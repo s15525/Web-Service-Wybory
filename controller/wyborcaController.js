@@ -5,7 +5,7 @@ const wyborca = require('../model/Wyborca');
 
 router.get("/", (req, res, next) => {
     const wyborcaList = wyborca.list();
-    res.render('/PanelAdministratora', {wyborcaList: wyborcaList});
+    res.render('PanelAdministratora', {wyborcaList: wyborcaList});
 });
 
 router.get("/newRekord", (req, res, next) => {
