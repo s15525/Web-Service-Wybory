@@ -29,7 +29,7 @@ class Wyborca {
 
     static initData() {
         //usuwamy zawartość tablicy
-        wyborcaExtent.splice(0, userExtent.length);
+        wyborcaExtent.splice(0, wyborcaExtent.length);
         //resetujemy licznik id
         nextId = 1;
         Wyborca.add(new Wyborca('Jan', 'Kowalski'));
