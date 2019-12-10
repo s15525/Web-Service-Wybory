@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Panel Administratora</title>
-    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/Main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +18,7 @@
             <li>Kolejna encja</li>
             <li>Kolejna encja</li>
         </ol>
-        <button><a href="PanelAdministratoraWieledoWiele.ejs">Panel administratora wiele do wiele</a></button>
+        <button><a href="../PanelAdministratoraWieledoWiele.ejs">Panel administratora wiele do wiele</a></button>
     </div>
     <div class="admin_table">
         <table>
@@ -30,13 +30,14 @@
             <% wyborcaList.forEach(function(wyborca){ %>
             <tr>
                 <td><%= wyborca.id %></td>
-                <td><%= wyborca.firstName %></td>
-                <td><%= wyborca.lastName %></td>
+                <td><%= wyborca.godzinaZ %></td>
+                <td><%= wyborca.ING %></td>
             </tr>
+            <% }) %>
         </table>
     </div>
 <div class="admin_button">
-    <button><a href="Szczegoly.html">Szczegoly</a></button>
+    <button><a href="../Szczegoly.html">Szczegoly</a></button>
     <button><a>Usun</a></button>
     <table>
         <tr>
@@ -47,8 +48,8 @@
         </tr>
     </table>
     <br>
-    <button><a href="NowyRekord.ejs">Nowy rekord</a></button>
-    <button><a href="Edycja.ejs">Edycja</a></button>
+    <button><a href="../NowyRekord.ejs">Nowy rekord</a></button>
+    <button><a href="../Edycja.ejs">Edycja</a></button>
 </div>
 </body>
 </html>
