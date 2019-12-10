@@ -1,0 +1,279 @@
+html {
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.Menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.Menu li {
+    float: left;
+}
+
+h1 {
+    color: white;
+}
+
+.Menu li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+.Menu li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #111111;
+}
+
+
+.Login {
+    display: inline-block;
+    color: white;
+    padding: 2px;
+    margin: 15px;
+}
+
+.block {
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 1700px;
+    height: 650px;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    color: white;
+    display: inline-block;
+    float: right;
+}
+
+.list {
+    float: left;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    color: white;
+}
+
+.home_container{
+    justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 10px;
+    height: 650px;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    color: white;
+}
+
+.vote_container{
+    justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 10px;
+    height: 650px;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    color: white;
+}
+
+.vote_list{
+    text-align-last: center;
+    border: 1px solid black;
+}
+
+.imglist{
+    margin-left: 10px;
+    display: inline-block;
+}
+.radioform{
+    margin-right: 10px;
+    display: inline-block;
+}
+.contact_container{
+    text-align-last: center;
+}
+.register_container input[type=text],input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #3CBC8D;
+    color: white;
+}
+.register_button{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.register_button button{
+    padding: 12px 28px;
+    background-color: #555555;
+    border-radius: 50%;
+}
+
+.admin_list {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.admin_table{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin_table table{
+    margin: 0 auto;
+    width: 30%;
+    border-collapse: collapse;
+}
+.admin_table td, th{
+    padding: 15px;
+    height: 25px;
+    text-align-last: center;
+    border: 1px solid black;
+}
+.admin_button{
+    text-align-last: center;
+    margin: 10px;
+}
+.admin_button table{
+    float: right;
+}
+.moreone{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.more{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 10px;
+    margin: 20px;
+}
+.wartosci{
+    display: flex;
+    flex-direction: column;
+}
+.przypisy{
+    display: flex;
+    margin-right: 10px;
+    flex-direction: column;
+}
+
+.buttonMore{
+    display: flex;
+    justify-content: center;
+}
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.admin_list_more {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.admin_table1{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin_table1 table{
+    width: 300px;
+    border-collapse: collapse;
+}
+.admin_table1 table, td, th{
+    border: 1px solid black;
+    margin: 15px;
+    text-align: center;
+}
+
+.admin_table1 td{
+    height: 50px;
+    width: 150px;
+}
+.admin_table1 th{
+    width: 150px;
+    height: 50px;
+}
+.boxmore{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+.rekordlist{
+    width: 250px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 1px solid black;
+}
+.rekordlist ol{
+    display: flex;
+    flex-direction: column;
+}
+.boxmore form,br{
+    display: flex;
+    flex-direction: column;
+}
+.buttonRekordmore{
+    display: flex;
+    margin-right: 60px;
+    font-size: 24px;
+    padding: 32px 16px;
+    border-radius: 12px;
+    justify-content: flex-end;
+}
+.errors-input {
+    border: 3px solid #e74c3c;
+}
+.errors-text {
+    font-size: 0.85em;
+}
+.errors-text,
+.required {
+    color: #e74c3c;
+}
+
+
+input[type="text"] {
+    padding: 2.5px;
+}
+
+input[type="submit"] {
+    padding: 5px;
+}
+
+label {
+    margin-right: 1em;
+}
+.summary{
+    text-align: center;
+}
