@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Edycja</h1>
+<div class="more">
+    <h2>Wybory</h2>
+    <div class="przypisy">
+        <label>Id wybory</label>
+        <br>
+        <label>Data</label>
+        <br>
+        <label>Frekwencja</label>
+        <br>
+        <label>Godzina rozpoczecia</label>
+        <br>
+        <label>Godzina zakonczenia</label>
+        <br>
+        <label>Ilosc nie waznych glosow</label>
+    </div>
+    <div class="wartosci" >
+        <form action="/edit" method="POST">
+            <input id="wybory_id" type="text" name="idwybory" style="padding: 10px">
+            <br>
+            <input id="data" type="text" name="data" style="padding: 10px">
+            <br>
+            <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px">
+            <br>
+            <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px">
+            <br>
+            <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px">
+            <br>
+            <input id="ING" type="text" name="ING" style="padding: 10px">
+            <div class="buttonMore">
+                <input type="submit" value="Zapisz" class="action-btn"></input>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

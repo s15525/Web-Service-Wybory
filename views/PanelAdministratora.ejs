@@ -29,7 +29,7 @@
             </tr>
             <% wyborcaList.forEach(function(wyborca){ %>
             <tr>
-                <td><%= wyborca.id %></td>
+                <td><a href="/Edycja?wyborca_id=<%=wyborca.id%>"><%=wyborca.id%></a></td>
                 <td><%= wyborca.godzinaZ %></td>
                 <td><%= wyborca.ING %></td>
             </tr>
@@ -48,8 +48,8 @@
         </tr>
     </table>
     <br>
-    <button><a href="../NowyRekord.ejs">Nowy rekord</a></button>
-    <button><a href="../Edycja.ejs">Edycja</a></button>
+    <button><a href="/NowyRekord">Nowy rekord</a></button>
+    <button><a href="Edycja.ejs">Edycja</a></button>
 </div>
 </body>
 </html>

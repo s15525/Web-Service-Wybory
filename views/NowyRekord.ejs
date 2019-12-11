@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nowy rekord</title>
     <link rel="stylesheet" type="text/css" href="css/Main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
 </head>
@@ -11,8 +11,6 @@
 <div class="more">
     <h2>Wybory</h2>
     <div class="przypisy">
-        <label>Id Wybory</label>
-        <br>
         <label>Data</label>
         <br>
         <label>Frekwencja</label>
@@ -23,10 +21,8 @@
         <br>
         <label>Ilosc nie waznych glosow</label>
     </div>
-    <div class="wartosci">
-        <form>
-            <input type="text" name="id" style="padding: 10px">
-            <br>
+    <div class="wartosci" >
+        <form action="/add" method="POST">
             <input type="text" name="data" style="padding: 10px">
             <br>
             <input type="text" name="frekwencja" style="padding: 10px">
@@ -36,11 +32,11 @@
             <input type="text" name="godzinaZ" style="padding: 10px">
             <br>
             <input type="text" name="ING" style="padding: 10px">
+            <div class="buttonMore">
+                <input type="submit" value="Zapisz" class="action-btn"></input>
+            </div>
         </form>
     </div>
-</div>
-<div class="buttonMore">
-    <button><a href="views/PanelAdministratora.ejs">Stworz</a></button>
 </div>
 </body>
 </html>
