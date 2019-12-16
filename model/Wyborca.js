@@ -27,6 +27,12 @@ class Wyborca {
         return wyborcaExtent;
     }
 
+    static edit(wyborca) {
+        wyborcaExtent[wyborca.id] = null;
+        wyborcaExtent.push(wyborca);
+        return wyborca;
+    }
+
     static initData() {
         //usuwamy zawartość tablicy
         wyborcaExtent.splice(0, wyborcaExtent.length);
