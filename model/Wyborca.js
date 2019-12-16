@@ -10,6 +10,7 @@ class Wyborca {
         this.frekwencja = frekwencja;
         this.godzinaR = godzinaR;
         this.godzinaZ = godzinaZ;
+        this.data = data;
         this.ING = ING;
     }
 
@@ -28,8 +29,8 @@ class Wyborca {
     }
 
     static edit(wyborca) {
-        wyborcaExtent[wyborca.id] = null;
-        wyborcaExtent.push(wyborca);
+        console.log(wyborca.id);
+        wyborcaExtent[wyborca.id-1] = wyborca;
         return wyborca;
     }
 
@@ -38,9 +39,9 @@ class Wyborca {
         wyborcaExtent.splice(0, wyborcaExtent.length);
         //resetujemy licznik id
         nextId = 1;
-        Wyborca.add(new Wyborca('Jan', 'Kowalski'));
-        Wyborca.add(new Wyborca('Anna', 'Wiśniewska'));
-        Wyborca.add(new Wyborca('Andrzej', 'Nowak'));
+        Wyborca.add(new Wyborca('10', '20:00',"8:00","71","13/08/2019"));
+        Wyborca.add(new Wyborca('16', '20:00',"8:00","81","13/08/2010"));
+        Wyborca.add(new Wyborca('20', '20:00',"8:00","91","13/08/2008"));
     }
 
 }

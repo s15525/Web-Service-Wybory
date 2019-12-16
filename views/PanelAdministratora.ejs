@@ -29,9 +29,9 @@
             </tr>
             <% wyborcaList.forEach(function(wyborca){ %>
             <tr>
-                <td><a href="/Edycja?wyborca_id=<%= wyborca.id %>"><%=wyborca.id%></a></td>
-                <td><%= wyborca.godzinaZ %></td>
-                <td><%= wyborca.ING %></td>
+                <td><a href="/Edycja?wyborca_id=<%= wyborca.id %>&data=<%= wyborca.data%>&frekwencja=<%= wyborca.frekwencja%>&ING=<%= wyborca.ING%>&godzinaR=<%= wyborca.godzinaR%>&godzinaZ=<%= wyborca.godzinaZ%>"><%=wyborca.id%></a></td>
+                <td><%= wyborca.data %></td>
+                <td><%= wyborca.frekwencja %></td>
             </tr>
             <% }) %>
         </table>
