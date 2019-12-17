@@ -34,8 +34,8 @@ class Wyborca {
     }
 
     static delete(id) {
-        const wyborca = wyborcaExtent.filter(obj => {return wyborcaExtent.id === id})
-        return wyborcaExtent.splice(wyborca,1)
+        const index = wyborcaExtent.findIndex(x => x.id === id)
+        return wyborcaExtent.splice(index,1)
     }
 
     static initData() {

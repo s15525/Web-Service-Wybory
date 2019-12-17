@@ -10,45 +10,52 @@
 <div class="Menu">
     <h1>Panel Administratora</h1>
 </div>
-    <div class="admin_list">
-        <h2>Encje</h2>
-        <ol>
-            <li>Wybory</li>
-            <li>Kandydat</li>
-            <li>Kolejna encja</li>
-            <li>Kolejna encja</li>
-        </ol>
-        <button><a href="PanelAdministratoraWieledoWiele.ejs">Panel administratora wiele do wiele</a></button>
-    </div>
-    <div class="admin_table">
-        <table>
-            <tr>
-                <th>Id wybory</th>
-                <th>Data</th>
-                <th>Frekwencja</th>
-            </tr>
-            <% wyborcaList.forEach(function(wyborca){ %>
-            <tr>
-                <td><%=wyborca.id%></td>
-                <td><%= wyborca.data %></td>
-                <td><%= wyborca.frekwencja %></td>
-                <td class="actions">
-                    <a>Szczegóły</a>
-                    <a href="/Edycja?wyborca_id=<%= wyborca.id %>&data=<%= wyborca.data%>&frekwencja=<%= wyborca.frekwencja%>&ING=<%= wyborca.ING%>&godzinaR=<%= wyborca.godzinaR%>&godzinaZ=<%= wyborca.godzinaZ%>">Edytuj</a>
-                    <a href="/Usun?wyborca_id=<%= wyborca.id %>">Usuń</a>
-                </td>
-            </tr>
-            <% }) %>
-        </table>
-    </div>
-<div class="admin_button">
-    <button><a href="Szczegoly.ejs">Szczegoly</a></button>
+<div class="admin_list">
+    <h2>Encje</h2>
+    <ol>
+        <li>Wybory</li>
+        <li>Kandydat</li>
+        <li>Kolejna encja</li>
+        <li>Kolejna encja</li>
+    </ol>
+    <button><a href="PanelAdministratoraWieledoWiele.ejs">Panel administratora wiele do wiele</a></button>
+</div>
+<div class="admin_table">
     <table>
         <tr>
-            <th><a href="next">10</a></th>
-            <th><a href="next">20</a></th>
-            <th><a href="next">30</a></th>
-            <th><a href="next">40</a></th>
+            <th>Id wybory</th>
+            <th>Data</th>
+            <th>Frekwencja</th>
+        </tr>
+        <% for( var i = page_last ; i <= page_next-1 ; i++) { %>
+            <% if (i <= wyborcaList.length-1){ %>
+                <tr>
+                    <td><%= wyborcaList[i].id %></td>
+                    <td><%= wyborcaList[i].data %></td>
+                    <td><%= wyborcaList[i].frekwencja %></td>
+                    <td class="actions">
+                        <a href="/Szczegoly?wyborca_id=<%= wyborcaList[i].id %>&data=<%= wyborcaList[i].data %>&frekwencja=<%= wyborcaList[i].frekwencja %>&ING=<%= wyborcaList[i].ING %>&godzinaR=<%= wyborcaList[i].godzinaR %>&godzinaZ=<%= wyborcaList[i].godzinaZ %>">Szczegoly</a>
+                        <a href="/Edycja?wyborca_id=<%= wyborcaList[i].id %>&data=<%= wyborcaList[i].data %>&frekwencja=<%= wyborcaList[i].frekwencja %>&ING=<%= wyborcaList[i].ING %>&godzinaR=<%= wyborcaList[i].godzinaR %>&godzinaZ=<%= wyborcaList[i].godzinaZ %>">Edytuj</a>
+                        <a href="/Usun?wyborca_id=<%= wyborcaList[i].id %>">Usuń</a>
+                    </td>
+                </tr>
+            <% }else{ %>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+        <% }} %>
+    </table>
+</div>
+<div class="admin_button">
+    <table>
+        <tr>
+            <th><a href="/PanelAdministratora?page_last=0&page_next=10">0</a></th>
+            <th><a href="/PanelAdministratora?page_last=10&page_next=20">10</a></th>
+            <th><a href="/PanelAdministratora?page_last=20&page_next=30">20</a></th>
+            <th><a href="/PanelAdministratora?page_last=30&page_next=40">30</a></th>
+            <th><a href="/PanelAdministratora?page_last=40&page_next=50">40</a></th>
         </tr>
     </table>
     <br>
