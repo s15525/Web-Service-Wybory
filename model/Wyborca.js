@@ -29,9 +29,13 @@ class Wyborca {
     }
 
     static edit(wyborca) {
-        console.log(wyborca.id);
         wyborcaExtent[wyborca.id-1] = wyborca;
         return wyborca;
+    }
+
+    static delete(id) {
+        const wyborca = wyborcaExtent.filter(obj => {return wyborcaExtent.id === id})
+        return wyborcaExtent.splice(wyborca,1)
     }
 
     static initData() {

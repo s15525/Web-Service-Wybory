@@ -18,7 +18,7 @@
             <li>Kolejna encja</li>
             <li>Kolejna encja</li>
         </ol>
-        <button><a href="../PanelAdministratoraWieledoWiele.ejs">Panel administratora wiele do wiele</a></button>
+        <button><a href="PanelAdministratoraWieledoWiele.ejs">Panel administratora wiele do wiele</a></button>
     </div>
     <div class="admin_table">
         <table>
@@ -29,16 +29,20 @@
             </tr>
             <% wyborcaList.forEach(function(wyborca){ %>
             <tr>
-                <td><a href="/Edycja?wyborca_id=<%= wyborca.id %>&data=<%= wyborca.data%>&frekwencja=<%= wyborca.frekwencja%>&ING=<%= wyborca.ING%>&godzinaR=<%= wyborca.godzinaR%>&godzinaZ=<%= wyborca.godzinaZ%>"><%=wyborca.id%></a></td>
+                <td><%=wyborca.id%></td>
                 <td><%= wyborca.data %></td>
                 <td><%= wyborca.frekwencja %></td>
+                <td class="actions">
+                    <a>Szczegóły</a>
+                    <a href="/Edycja?wyborca_id=<%= wyborca.id %>&data=<%= wyborca.data%>&frekwencja=<%= wyborca.frekwencja%>&ING=<%= wyborca.ING%>&godzinaR=<%= wyborca.godzinaR%>&godzinaZ=<%= wyborca.godzinaZ%>">Edytuj</a>
+                    <a href="/Usun?wyborca_id=<%= wyborca.id %>">Usuń</a>
+                </td>
             </tr>
             <% }) %>
         </table>
     </div>
 <div class="admin_button">
-    <button><a href="../Szczegoly.html">Szczegoly</a></button>
-    <button><a>Usun</a></button>
+    <button><a href="Szczegoly.ejs">Szczegoly</a></button>
     <table>
         <tr>
             <th><a href="next">10</a></th>
@@ -49,7 +53,6 @@
     </table>
     <br>
     <button><a href="/NowyRekord">Nowy rekord</a></button>
-    <button><a href="Edycja.ejs">Edycja</a></button>
 </div>
 </body>
 </html>

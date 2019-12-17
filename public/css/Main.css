@@ -277,3 +277,8 @@ label {
 .summary{
     text-align: center;
 }
+
+.actions {
+    text-align: center;
+    width: 20rem;
+}
