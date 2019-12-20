@@ -10,6 +10,8 @@
 <h1>Szczegoly</h1>
 <div class="box">
     <div class="more">
+        <%var indexkandydat = kandydatList.findIndex( x => x.id == kandydatId);%>
+        <%var indexwyborca = wyborcaList.findIndex( x => x.id == wyborcaId);%>
         <div class="przypisy">
             <label>Data</label>
             <br>
@@ -22,27 +24,27 @@
             <label>Ilosc nie waznych glosow</label>
         </div>
         <div class="wartosci">
-            <label>Wartosc</label>
+            <label><%= wyborcaList[indexwyborca].data%></label>
             <br>
-            <label>Wartosc</label>
+            <label><%= wyborcaList[indexwyborca].frekwencja%></label>
             <br>
-            <label>Wartosc</label>
+            <label><%= wyborcaList[indexwyborca].godzinaR%></label>
             <br>
-            <label>Wartosc</label>
+            <label><%= wyborcaList[indexwyborca].godzinaZ%></label>
             <br>
-            <label>Wartosc</label>
+            <label><%= wyborcaList[indexwyborca].ING%></label>
         </div>
     </div>
     <div class="more">
     <div class="przypisy">
-        <label>Id Wybory</label>
+        <label>Id wyborca</label>
         <br>
         <label>Id kandydata</label>
     </div>
     <div class="wartosci">
-        <label>Wartosc</label>
+        <label><%=wyborcaId%></label>
         <br>
-        <label>Wartosc</label>
+        <label><%=kandydatId%></label>
     </div>
 </div>
 <div class="more">
@@ -62,26 +64,26 @@
     <label>Id Kandyduje Do</label>
 </div>
 <div class="wartosci">
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].miejsce %></label>
     <br>
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].imie %></label>
     <br>
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].nazwisko %></label>
     <br>
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].nrLegitymacjiPoselskiej %></label>
     <br>
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].idLista %></label>
     <br>
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].idUgrupowanie %></label>
     <br>
-    <label>Wartosc</label>
+    <label><%= kandydatList[indexkandydat].idKandydujeDo %></label>
 </div>
 </div>
 </div>
 <div class="buttonMore">
     <button>Poprzedni Rekord</button>
     <button>Nastepny Rekord</button>
-    <button><a href="views/PanelAdministratoraWieledoWiele.ejs">Ok</a></button>
+    <button><a href="/PanelAdministratoraWieledoWiele?page_last=0&page_next=10">Ok</a></button>
 </div>
 </body>
 </html>

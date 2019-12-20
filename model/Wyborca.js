@@ -14,6 +14,10 @@ class Wyborca {
         this.ING = ING;
     }
 
+    static getTable(){
+        return wyborcaExtent;
+    }
+
     //dodawanie obiektu do bazy
     static add(wyborca) {
         wyborca.id = nextId++;

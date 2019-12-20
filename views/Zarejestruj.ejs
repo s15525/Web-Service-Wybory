@@ -9,31 +9,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="js/FormValidate.js"></script>
 </head>
-<body style ="overflow-y: scroll; overflow-x: hidden; height: 900px">
-<div class="Login"><h1>Portal Wyborczy</h1></div>
-<div class="Login" style="float: right">
-    <br>
-    <button name="sing in">login</button>
-</div>
-<div class="Login" style="float: right">
-    <form>
+<body style="overflow-y: scroll; overflow-x: hidden; height: 900px">
+<form>
+    <div class="Login"><h1>Portal Wyborczy</h1></div>
+    <div class="Login" style="float: right">
+        <br>
+        <button name="sing in">login</button>
+    </div>
+    <div class="Login" style="float: right">
         Haslo:<br>
         <input type="text" name="haslo">
-    </form>
-    <li><a href="Zarejestruj.ejs">Zarejestruj</a></li>
-</div>
-<div class="Login" style="float: right">
-    <form>
+        <li><a href="/Zarejestruj">Zarejestruj</a></li>
+    </div>
+    <div class="Login" style="float: right">
         Login:<br>
         <input type="text" name="login">
-    </form>
-</div>
+    </div>
+</form>
 <div class="Menu">
     <ul>
-        <li><a href="Home.ejs">Home</a></li>
-        <li><a href="../Dyskusja.html">Dyskusja</a></li>
-        <li><a href="../Glosuj.html">Glosuj</a></li>
-        <li style="float: right"><a href="../Kontakt.html">Kontakt</a></li>
+        <li><a href="/Home">Home</a></li>
+        <li><a href="Dyskusja.html">Dyskusja</a></li>
+        <li><a href="Glosuj.html">Glosuj</a></li>
+        <li style="float: right"><a href="Kontakt.html">Kontakt</a></li>
     </ul>
 </div>
 <div class="summary">
@@ -42,7 +40,8 @@
 </div>
 <div class="more">
     <div class="register_container">
-        <form id="form" action="#">
+        //jak sie usunie
+        <form id="form" action="/addUser" method="POST">
             <p>
                 <label for="email">Email</label>
                 <input type="text" id="email" name="email"><span class="required"><sup>*</sup></span>
@@ -76,7 +75,7 @@
                 <input type="text" id="nrdowodu" name="nrdowodu"><span class="required"><sup>*</sup></span>
                 <span id="errors_nrdowodu" class="errors-text"></span>
             </p>
-            <input type="submit" value="Wyślij">
+            <input type="submit" value="Wyślij" class="action-btn"></input>
         </form>
     </div>
 </div>
