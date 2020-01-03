@@ -29,7 +29,8 @@ router.get("/NowyRekord", (req, res, next) => {
 });
 
 router.get("/Edycja", (req, res, next) => {
-    res.render('Edycja', { idwybory : req.query.wyborca_id , data: req.query.data , frekwencja: req.query.frekwencja , ING: req.query.ING , godzinaR: req.query.godzinaR , godzinaZ: req.query.godzinaZ });
+    const wyborcaList = Wyborca.list();
+    res.render('Edycja', { wyborcaId : req.query.wyborca_id , wyborcaList: wyborcaList});
 });
 
 router.get("/Usun", (req, res, next) => {
@@ -38,7 +39,8 @@ router.get("/Usun", (req, res, next) => {
 });
 
 router.get("/Szczegoly", (req, res, next) => {
-    res.render('Szczegoly' , { idwybory : req.query.wyborca_id , data: req.query.data , frekwencja: req.query.frekwencja , ING: req.query.ING , godzinaR: req.query.godzinaR , godzinaZ: req.query.godzinaZ })
+    const wyborcaList = Wyborca.list();
+    res.render('Szczegoly' , { wyborcaId : req.query.wyborca_id , wyborcaList: wyborcaList})
 });
 
 router.get("/SzczegolyWieleDoWiele", (req, res, next) => {
