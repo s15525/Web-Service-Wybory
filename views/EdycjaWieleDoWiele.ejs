@@ -31,7 +31,9 @@
         </div>
         <div class="wartosci">
             <form action="/editMoreToMore" method="POST">
-                <label id="idwybory" style="padding: 10px" ><%= wyborcaId %></label>
+                <label style="padding: 10px"><%= wyborcaId %></label>
+                <input id="idwybory" type="hidden" name="idwybory" style="padding: 10px"
+                       value="<%= wyborcaId %>">
                 <br>
                 <input id="data" type="text" name="data" style="padding: 10px"
                        value="<%= wyborcaList[indexwyborca].data %>">
@@ -97,26 +99,28 @@
         <div class="wartosci">
             <label id="kandydatId" style="padding: 10px"
                    ><%= kandydatId %></label>
+            <input id="kandydatId" type="hidden" name="kandydatId" style="padding: 10px"
+                   value="<%= kandydatId %>">
             <br>
-            <input id="miejsce" type="text" name="data" style="padding: 10px"
+            <input id="miejsce" type="text" name="miejsce" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].miejsce %>">
             <br>
-            <input id="imie" type="text" name="frekwencja" style="padding: 10px"
+            <input id="imie" type="text" name="imie" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].imie %>">
             <br>
-            <input id="nazwisko" type="text" name="godzinaR" style="padding: 10px"
+            <input id="nazwisko" type="text" name="nazwisko" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].nazwisko %>">
             <br>
-            <input id="nrLegitymacjiPoselskiej" type="text" name="godzinaZ" style="padding: 10px"
+            <input id="nrLegitymacjiPoselskiej" type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].nrLegitymacjiPoselskiej %>">
             <br>
-            <input id="idLista" type="text" name="ING" style="padding: 10px"
+            <input id="idLista" type="text" name="idLista" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].idLista %>">
             <br>
-            <input id="idUgrupowanie" type="text" name="ING" style="padding: 10px"
+            <input id="idUgrupowanie" type="text" name="idUgrupowanie" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].idUgrupowanie %>">
             <br>
-            <input id="idKandydujeDo" type="text" name="ING" style="padding: 10px"
+            <input id="idKandydujeDo" type="text" name="idKandydujeDo" style="padding: 10px"
                    value="<%= kandydatList[indexkandydat].idKandydujeDo %>">
             <div class="buttonMore">
                 <input type="submit" value="Zapisz" class="action-btn"></input>

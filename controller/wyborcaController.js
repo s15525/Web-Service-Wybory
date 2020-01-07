@@ -87,6 +87,7 @@ router.post("/edit", (req, res, next) => {
 router.post("/editMoreToMore", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data, req.body.idwybory);
     const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo, req.body.kandydatId);
+    console.log(newKandydat)
     Dbservice.edit(newWyborca,newKandydat);
     res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
 });
