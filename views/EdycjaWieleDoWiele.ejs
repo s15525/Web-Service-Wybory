@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administratora</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="Menu">
+    <h1>Edycja rekord wiele do wiele</h1>
+</div>
+<div class="boxmore">
+    <% var indexkandydat = kandydatList.findIndex(x => x.id == kandydatId); %>
+    <% var indexwyborca = wyborcaList.findIndex(x => x.id == wyborcaId); %>
+    <div class="more">
+        <h2>Wybory</h2>
+        <br>
+        <div class="przypisy">
+            <label style="padding: 10px">Id wybory</label>
+            <br>
+            <label style="padding: 10px">Data</label>
+            <br>
+            <label style="padding: 10px">Frekwencja</label>
+            <br>
+            <label style="padding: 10px">Godzina rozpoczecia</label>
+            <br>
+            <label style="padding: 10px">Godzina zakonczenia</label>
+            <br>
+            <label style="padding: 10px">Ilosc nie waznych glosow</label>
+        </div>
+        <div class="wartosci">
+            <form action="/editMoreToMore" method="POST">
+                <label id="idwybory" style="padding: 10px" ><%= wyborcaId %></label>
+                <br>
+                <input id="data" type="text" name="data" style="padding: 10px"
+                       value="<%= wyborcaList[indexwyborca].data %>">
+                <br>
+                <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px"
+                       value="<%= wyborcaList[indexwyborca].frekwencja %>">
+                <br>
+                <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px"
+                       value="<%= wyborcaList[indexwyborca].godzinaR %>">
+                <br>
+                <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px"
+                       value="<%= wyborcaList[indexwyborca].godzinaZ %>">
+                <br>
+                <input id="ING" type="text" name="ING" style="padding: 10px"
+                       value="<%= wyborcaList[indexwyborca].ING %>">
+        </div>
+    </div>
+    <div class="more">
+        <div class="encjarekordylista">
+            <ol>
+            <%for(var i = 0 ; i < wyborcaList.length ; i++){%>
+                    <li><%= wyborcaList[i].id %></li>
+                    <ul>
+                        <li><%= wyborcaList[i].data %></li>
+                        <li><%= wyborcaList[i].frekwencja %></li>
+                    </ul>
+            <%}%>
+            </ol>
+        </div>
+        <div class="encjarekordylista">
+            <ol>
+                <%for(var i = 0 ; i < kandydatList.length ; i++){%>
+                    <li><a href=""><%=  kandydatList[i].id %></a></li>
+                    <ul>
+                        <li><%= kandydatList[i].imie %></li>
+                        <li><%= kandydatList[i].nrLegitymacjiPoselskiej %></li>
+                    </ul>
+                <%}%>
+            </ol>
+        </div>
+    </div>
+    <div class="more">
+        <h2>Kandydat</h2>
+        <br>
+        <div class="przypisy">
+            <label style="padding: 10px">Id Kandydat</label>
+            <br>
+            <label style="padding: 10px">Miejsce</label>
+            <br>
+            <label style="padding: 10px">Imie</label>
+            <br>
+            <label style="padding: 10px">Nazwisko</label>
+            <br>
+            <label style="padding: 10px">NrLegitymacjiPoselskiej</label>
+            <br>
+            <label style="padding: 10px">IdLista</label>
+            <br>
+            <label style="padding: 10px">IdUgrupowanie</label>
+            <br>
+            <label style="padding: 10px">IdKandydujeDo</label>
+            <br>
+        </div>
+        <div class="wartosci">
+            <label id="kandydatId" style="padding: 10px"
+                   ><%= kandydatId %></label>
+            <br>
+            <input id="miejsce" type="text" name="data" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].miejsce %>">
+            <br>
+            <input id="imie" type="text" name="frekwencja" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].imie %>">
+            <br>
+            <input id="nazwisko" type="text" name="godzinaR" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].nazwisko %>">
+            <br>
+            <input id="nrLegitymacjiPoselskiej" type="text" name="godzinaZ" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].nrLegitymacjiPoselskiej %>">
+            <br>
+            <input id="idLista" type="text" name="ING" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].idLista %>">
+            <br>
+            <input id="idUgrupowanie" type="text" name="ING" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].idUgrupowanie %>">
+            <br>
+            <input id="idKandydujeDo" type="text" name="ING" style="padding: 10px"
+                   value="<%= kandydatList[indexkandydat].idKandydujeDo %>">
+            <div class="buttonMore">
+                <input type="submit" value="Zapisz" class="action-btn"></input>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

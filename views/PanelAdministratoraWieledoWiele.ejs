@@ -92,9 +92,9 @@
                         <td><%= wyborcaKandydat[i][1].data %></td>
                         <td><%= wyborcaKandydat[i][1].frekwencja %></td>
                         <td class="actions">
-                            <a href="/SzczegolyWieleDoWiele?wyborca_id=<%= wyborcaKandydat[i][0].id %>&kandydat_id=<%= wyborcaKandydat[i][1].id %>">Szczegoly</a>
-                            <a>Edytuj</a>
-                            <a>Usuń</a>
+                            <a href="/SzczegolyWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i][0].id %>&wyborca_id=<%= wyborcaKandydat[i][1].id %>">Szczegoly</a>
+                            <a href="/EdycjaWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i][0].id %>&wyborca_id=<%= wyborcaKandydat[i][1].id %>">Edytuj</a>
+                            <a href="/SzczegolyWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i][0].id %>&wyborca_id=<%= wyborcaKandydat[i][1].id %>">Usuń</a>
                         </td>
                     </tr>
                 <% }else{ %>

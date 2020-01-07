@@ -24,7 +24,16 @@ class Dbservice {
     static list(){
         return KandydatWyboryObject;
     }
-
+    static edit(wybory, kandydat){
+        for (var i = 0 ; i <= KandydatWyboryObject.length-1; i++){
+            if(KandydatWyboryObject[i][0].id == kandydat.id){
+                KandydatWyboryObject[i][0] = kandydat;
+            }
+            if(KandydatWyboryObject[i][1].id == wybory.id){
+                KandydatWyboryObject[i][1] = wybory;
+            }
+        }
+    }
 }
 
 Dbservice.KandydatWyborca();

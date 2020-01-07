@@ -33,7 +33,8 @@ class Wyborca {
     }
 
     static edit(wyborca) {
-        wyborcaExtent[wyborca.id-1] = wyborca;
+        const index = wyborcaExtent.findIndex(x => x.id == wyborca.id);
+        wyborcaExtent[index] = wyborca;
         return wyborca;
     }
 
