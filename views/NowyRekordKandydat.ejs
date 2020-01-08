@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nowy rekord</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Nowy rekord</h1>
+<div class="more">
+    <h2>Kandydat</h2>
+    <br>
+    <div class="przypisy">
+        <label>Miejsce</label>
+        <br>
+        <label>Imie</label>
+        <br>
+        <label>Nazwisko</label>
+        <br>
+        <label>NrLegitymacjiPoselskiej</label>
+        <br>
+        <label>IdLista</label>
+        <br>
+        <label>IdUgrupowanie</label>
+        <br>
+        <label>IdKandydujeDo</label>
+    </div>
+    <div class="wartosci">
+        <form action="/addKandydat" method="POST">
+            <input type="hidden" name="wyboryId" style="padding: 10px" value="<%=wyboryId%>">
+            <input type="text" name="miejsce" style="padding: 10px">
+            <br>
+            <input type="text" name="imie" style="padding: 10px">
+            <br>
+            <input type="text" name="nazwisko" style="padding: 10px">
+            <br>
+            <input type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px">
+            <br>
+            <input type="text" name="idLista" style="padding: 10px">
+            <br>
+            <input type="text" name="idUgrupowanie" style="padding: 10px">
+            <br>
+            <input type="text" name="idKandydujeDo" style="padding: 10px">
+            <div class="buttonMore">
+                <input type="submit" value="Zapisz" class="action-btn"></input>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

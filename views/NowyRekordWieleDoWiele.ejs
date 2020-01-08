@@ -11,127 +11,97 @@
     <h1>Nowy rekord wiele do wiele</h1>
 </div>
 <div class="boxmore">
-    <div class="EncjaJeden">
+    <div class="more">
         <h2>Wybory</h2>
-        <br>
-        <label style="padding: 20px">Id Wybory</label>
-        <label>Wartosc</label>
-        <br>
-        <label style="padding: 20px">Data</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">Frekwencja</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">Godzina rozpoczecia</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">Godzina zakonczenia</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">Ilosc nie waznych glosow</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
+        <div class="przypisy">
+            <label style="padding: 10px">Data</label>
+            <br>
+            <label style="padding: 10px">Frekwencja</label>
+            <br>
+            <label style="padding: 10px">Godzina rozpoczecia</label>
+            <br>
+            <label style="padding: 10px">Godzina zakonczenia</label>
+            <br>
+            <label style="padding: 10px">Ilosc nie waznych glosow</label>
+        </div>
+        <div class="wartosci">
+            <form action="/add" method="POST">
+                <input type="text" name="data" style="padding: 10px">
+                <br>
+                <input type="text" name="frekwencja" style="padding: 10px">
+                <br>
+                <input type="text" name="godzinaR" style="padding: 10px">
+                <br>
+                <input type="text" name="godzinaZ" style="padding: 10px">
+                <br>
+                <input type="text" name="ING" style="padding: 10px">
+            </form>
+        </div>
     </div>
     <div class="rekordlist">
         <h2>Wybory rekrdy</h2>
         <ol>
-            <li>213424
+            <%for(var i = 0 ; i < wyborcaList.length ; i++){%>
+                <li><a href="/NowyRekordKandydat?wyboryId=<%=wyborcaList[i].id%>"><%= wyborcaList[i].id %></a></li>
                 <ul>
-                    <li>2001</li>
+                    <li><%= wyborcaList[i].data %></li>
+                    <li><%= wyborcaList[i].frekwencja %></li>
                 </ul>
-            </li>
-            <li>142214
-                <ul>
-                    <li>2002</li>
-                </ul>
-            </li>
-            <li>314243
-                <ul>
-                    <li>2004</li>
-                </ul>
-            </li>
+            <%}%>
         </ol>
     </div>
     <div class="rekordlist">
         <h2>Kandydat rekrdy</h2>
         <ol>
-            <li>213213213
+            <%for(var i = 0 ; i < kandydatList.length ; i++){%>
+                <li><a href="/NowyRekordWybory?kandydatId=<%=kandydatList[i].id%>"><%=  kandydatList[i].id %></a></li>
                 <ul>
-                    <li>Mikolaj</li>
-                    <li>Barabasz</li>
+                    <li><%= kandydatList[i].imie %></li>
+                    <li><%= kandydatList[i].nrLegitymacjiPoselskiej %></li>
                 </ul>
-            </li>
-            <li>324324234
-                <ul>
-                    <li>Wiktoria</li>
-                    <li>Sternik</li>
-                </ul>
-            </li>
-            <li>432423423
-                <ul>
-                    <li>Maciek</li>
-                    <li>Jakuki</li>
-                </ul>
-            </li>
+            <%}%>
         </ol>
     </div>
     <div class="EncjaDwa">
-        <h2>Kandydat</h2>
-        <br>
-        <label style="padding: 20px">Id Kandydat</label>
-        <label>Wartosc</label>
-        <br>
-        <label style="padding: 20px">Miejsce</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">Imie</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">Nazwisko</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">NrLegitymacjiPoselskiej</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <label style="padding: 20px">IdLista</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <br>
-        <label style="padding: 20px">IdUgrupowanie</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
-        <br>
-        <label style="padding: 20px">IdKandydujeDo</label>
-        <form>
-            <input type="text" name="Wartosc">
-        </form>
-        <br>
+        <div class="more">
+            <h2>Kandydat</h2>
+            <br>
+            <div class="przypisy">
+                <label style="padding: 10px">Miejsce</label>
+                <br>
+                <label style="padding: 10px">Imie</label>
+                <br>
+                <label style="padding: 10px">Nazwisko</label>
+                <br>
+                <label style="padding: 10px">NrLegitymacjiPoselskiej</label>
+                <br>
+                <label style="padding: 10px">IdLista</label>
+                <br>
+                <label style="padding: 10px">IdUgrupowanie</label>
+                <br>
+                <label style="padding: 10px">IdKandydujeDo</label>
+            </div>
+            <div class="wartosci">
+                    <input type="text" name="miejsce" style="padding: 10px">
+                    <br>
+                    <input type="text" name="imie" style="padding: 10px">
+                    <br>
+                    <input type="text" name="nazwisko" style="padding: 10px">
+                    <br>
+                    <input type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px">
+                    <br>
+                    <input type="text" name="idLista" style="padding: 10px">
+                    <br>
+                    <input type="text" name="idUgrupowanie" style="padding: 10px">
+                    <br>
+                    <input type="text" name="idKandydujeDo" style="padding: 10px">
+                    <div class="buttonMore">
+                        <input type="submit" value="Zapisz" class="action-btn"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
-<div class="buttonRekordmore">
-    <button><a href="PanelAdministratoraWieledoWiele.ejs">Stworz</a></button>
 </div>
 </body>
 </html>

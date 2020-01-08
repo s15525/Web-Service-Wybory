@@ -22,7 +22,8 @@
         <label>Ilosc nie waznych glosow</label>
     </div>
     <div class="wartosci" >
-        <form action="/add" method="POST">
+        <form action="/addWybory" method="POST">
+            <input id="kandydatId" type="hidden" name="kandydatId" style="padding: 10px" value="<%=kandydatId%>">
             <input type="text" name="data" style="padding: 10px">
             <br>
             <input type="text" name="frekwencja" style="padding: 10px">
