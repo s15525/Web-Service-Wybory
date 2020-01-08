@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var spacja = /\s/
 
     function validateForm(e) {
-        e.preventDefault();
         let messages = [];
         let valid = true;
         if (fieldemail.value.trim().length === 0) {
@@ -160,12 +159,14 @@ document.addEventListener('DOMContentLoaded', function () {
             fieldpesel.className = "errors-input";
             fielddataurodzenia.className = "errors-input";
             fieldnrdowodu.className = "errors-input";
-            return valid;
+            
+            e.preventDefault();
         } else {
             errorsSummary.innerHTML = "";
             errorsInfo.innerHTML = "";
-            return valid;
         }
+
+        return valid;
     }
 
     form.addEventListener('submit', validateForm);
