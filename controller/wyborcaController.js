@@ -91,7 +91,8 @@ router.get("/NowyRekordWieledoWiele", (req, res, next) => {
 
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
-    if(req.body.kandydatId === undefined) {
+    console.log(req.body.kandydatId);
+    if( req.body.kandydatId == "") {
         Wyborca.add(newWyborca);
         res.redirect("/PanelAdministratora?page_last=0&page_next=10");
     }else{
@@ -105,11 +106,11 @@ router.post("/addKandydat", (req, res, next) => {
     const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo);
     if(req.body.wyboryId === undefined) {
         Kandydat.add(newKandydat);
-        res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+    res.redirect("/PanelAdministratora?page_last=0&page_next=10");
     }else{
         Kandydat.add(newKandydat);
         Dbservice.addKandydat(req.body.wyboryId,newKandydat);
-        res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+     res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
     }
 });
 

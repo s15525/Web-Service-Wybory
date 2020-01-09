@@ -5,6 +5,9 @@
     <title>Panel Administratora</title>
     <link rel="stylesheet" type="text/css" href="css/Main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/DatabeseServiceValidate.js"></script>
 </head>
 <body>
 <div class="Menu">
@@ -14,51 +17,56 @@
     <div class="more">
         <h2>Wybory</h2>
         <div class="przypisy">
-            <label style="padding: 10px">Data</label>
+            <label style="padding: 20px">Data</label>
             <br>
-            <label style="padding: 10px">Frekwencja</label>
+            <label style="padding: 20px">Frekwencja</label>
             <br>
-            <label style="padding: 10px">Godzina rozpoczecia</label>
+            <label style="padding: 20px">Godzina rozpoczecia</label>
             <br>
-            <label style="padding: 10px">Godzina zakonczenia</label>
+            <label style="padding: 20px">Godzina zakonczenia</label>
             <br>
-            <label style="padding: 10px">Ilosc nie waznych glosow</label>
+            <label style="padding: 20px">Ilosc nie waznych glosow</label>
         </div>
         <div class="wartosci">
-            <form action="/addMoreToMore" method="POST">
-                <input type="text" name="data" style="padding: 10px">
+            <form id="dbService" action="/addMoreToMore" method="POST">
+                <input type="text" name="data" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_data" class="errors-text"></span>
                 <br>
-                <input type="text" name="frekwencja" style="padding: 10px">
+                <input type="text" name="frekwencja" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_frekwencja" class="errors-text"></span>
                 <br>
-                <input type="text" name="godzinaR" style="padding: 10px">
+                <input type="text" name="godzinaR" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_godzinaR" class="errors-text"></span>
                 <br>
-                <input type="text" name="godzinaZ" style="padding: 10px">
+                <input type="text" name="godzinaZ" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_godzinaZ" class="errors-text"></span>
                 <br>
-                <input type="text" name="ING" style="padding: 10px">
+                <input type="text" name="ING" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_ING" class="errors-text"></span>
         </div>
     </div>
     <div class="rekordlist">
         <h2>Wybory rekrdy</h2>
         <ol>
-            <%for(var i = 0 ; i < wyborcaList.length ; i++){%>
-                <li><a href="/NowyRekordKandydat?wyboryId=<%=wyborcaList[i].id%>"><%= wyborcaList[i].id %></a></li>
-                <ul>
-                    <li><%= wyborcaList[i].data %></li>
-                    <li><%= wyborcaList[i].frekwencja %></li>
-                </ul>
-            <%}%>
+            <% for(var i = 0 ; i < wyborcaList.length ; i++){ %>
+            <li><a href="/NowyRekordKandydat?wyboryId=<%= wyborcaList[i].id %>"><%= wyborcaList[i].id %></a></li>
+            <ul>
+                <li><%= wyborcaList[i].data %></li>
+                <li><%= wyborcaList[i].frekwencja %></li>
+            </ul>
+            <% } %>
         </ol>
     </div>
     <div class="rekordlist">
         <h2>Kandydat rekrdy</h2>
         <ol>
-            <%for(var i = 0 ; i < kandydatList.length ; i++){%>
-                <li><a href="/NowyRekordWybory?kandydatId=<%=kandydatList[i].id%>"><%=  kandydatList[i].id %></a></li>
-                <ul>
-                    <li><%= kandydatList[i].imie %></li>
-                    <li><%= kandydatList[i].nrLegitymacjiPoselskiej %></li>
-                </ul>
-            <%}%>
+            <% for(var i = 0 ; i < kandydatList.length ; i++){ %>
+            <li><a href="/NowyRekordWybory?kandydatId=<%= kandydatList[i].id %>"><%= kandydatList[i].id %></a></li>
+            <ul>
+                <li><%= kandydatList[i].imie %></li>
+                <li><%= kandydatList[i].nrLegitymacjiPoselskiej %></li>
+            </ul>
+            <% } %>
         </ol>
     </div>
     <div class="EncjaDwa">
@@ -66,37 +74,44 @@
             <h2>Kandydat</h2>
             <br>
             <div class="przypisy">
-                <label style="padding: 10px">Miejsce</label>
+                <label style="padding: 20px">Miejsce</label>
                 <br>
-                <label style="padding: 10px">Imie</label>
+                <label style="padding: 20px">Imie</label>
                 <br>
-                <label style="padding: 10px">Nazwisko</label>
+                <label style="padding: 20px">Nazwisko</label>
                 <br>
-                <label style="padding: 10px">NrLegitymacjiPoselskiej</label>
+                <label style="padding: 20px">NrLegitymacjiPoselskiej</label>
                 <br>
-                <label style="padding: 10px">IdLista</label>
+                <label style="padding: 20px">IdLista</label>
                 <br>
-                <label style="padding: 10px">IdUgrupowanie</label>
+                <label style="padding: 20px">IdUgrupowanie</label>
                 <br>
-                <label style="padding: 10px">IdKandydujeDo</label>
+                <label style="padding: 20px">IdKandydujeDo</label>
             </div>
             <div class="wartosci">
-                    <input type="text" name="miejsce" style="padding: 10px">
-                    <br>
-                    <input type="text" name="imie" style="padding: 10px">
-                    <br>
-                    <input type="text" name="nazwisko" style="padding: 10px">
-                    <br>
-                    <input type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px">
-                    <br>
-                    <input type="text" name="idLista" style="padding: 10px">
-                    <br>
-                    <input type="text" name="idUgrupowanie" style="padding: 10px">
-                    <br>
-                    <input type="text" name="idKandydujeDo" style="padding: 10px">
-                    <div class="buttonMore">
-                        <input type="submit" value="Zapisz" class="action-btn"></input>
-                    </div>
+                <input type="text" name="miejsce" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_miejsce" class="errors-text"></span>
+                <br>
+                <input type="text" name="imie" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_imie" class="errors-text"></span>
+                <br>
+                <input type="text" name="nazwisko" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_nazwisko" class="errors-text"></span>
+                <br>
+                <input type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_nrLegitymacjiPoselskiej" class="errors-text"></span>
+                <br>
+                <input type="text" name="idLista" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_idLista" class="errors-text"></span>
+                <br>
+                <input type="text" name="idUgrupowanie" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_idUgrupowanie" class="errors-text"></span>
+                <br>
+                <input type="text" name="idKandydujeDo" style="padding: 10px"><span class="required"><sup>*</sup></span>
+                <span id="errors_idKandydujeDo" class="errors-text"></span>
+                <div class="buttonMore">
+                    <input type="submit" value="Zapisz" class="action-btn"></input>
+                </div>
                 </form>
             </div>
         </div>

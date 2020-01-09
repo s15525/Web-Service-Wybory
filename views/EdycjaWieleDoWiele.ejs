@@ -30,25 +30,30 @@
             <label style="padding: 10px">Ilosc nie waznych glosow</label>
         </div>
         <div class="wartosci">
-            <form action="/editMoreToMore" method="POST">
+            <form id="dbService" action="/editMoreToMore" method="POST">
                 <label style="padding: 10px"><%= wyborcaId %></label>
                 <input id="idwybory" type="hidden" name="idwybory" style="padding: 10px"
-                       value="<%= wyborcaId %>">
+                       value="<%= wyborcaId %>"><span class="required"><sup>*</sup></span>
                 <br>
                 <input id="data" type="text" name="data" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].data %>">
+                       value="<%= wyborcaList[indexwyborca].data %>"><span class="required"><sup>*</sup></span>
                 <br>
+                <span id="errors_data" class="errors-text"></span>
                 <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].frekwencja %>">
+                       value="<%= wyborcaList[indexwyborca].frekwencja %>"><span class="required"><sup>*</sup></span>
+                <span id="errors_frekwencja" class="errors-text"></span>
                 <br>
                 <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].godzinaR %>">
+                       value="<%= wyborcaList[indexwyborca].godzinaR %>"><span class="required"><sup>*</sup></span>
+                <span id="errors_godzinaR" class="errors-text"></span>
                 <br>
                 <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].godzinaZ %>">
+                       value="<%= wyborcaList[indexwyborca].godzinaZ %>"><span class="required"><sup>*</sup></span>
+                <span id="errors_godzinaZ" class="errors-text"></span>
                 <br>
                 <input id="ING" type="text" name="ING" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].ING %>">
+                       value="<%= wyborcaList[indexwyborca].ING %>"><span class="required"><sup>*</sup></span>
+                <span id="errors_ING" class="errors-text"></span>
         </div>
     </div>
     <div class="more">
@@ -76,28 +81,35 @@
             <label id="kandydatId" style="padding: 10px"
                    ><%= kandydatId %></label>
             <input id="kandydatId" type="hidden" name="kandydatId" style="padding: 10px"
-                   value="<%= kandydatId %>">
+                   value="<%= kandydatId %>"><span class="required"><sup>*</sup></span>
             <br>
             <input id="miejsce" type="text" name="miejsce" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].miejsce %>">
+                   value="<%= kandydatList[indexkandydat].miejsce %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_miejsce" class="errors-text"></span>
             <br>
             <input id="imie" type="text" name="imie" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].imie %>">
+                   value="<%= kandydatList[indexkandydat].imie %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_imie" class="errors-text"></span>
             <br>
             <input id="nazwisko" type="text" name="nazwisko" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].nazwisko %>">
+                   value="<%= kandydatList[indexkandydat].nazwisko %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_nazwisko" class="errors-text"></span>
             <br>
             <input id="nrLegitymacjiPoselskiej" type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].nrLegitymacjiPoselskiej %>">
+                   value="<%= kandydatList[indexkandydat].nrLegitymacjiPoselskiej %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_nrLegitymacjiPoselskiej" class="errors-text"></span>
             <br>
             <input id="idLista" type="text" name="idLista" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].idLista %>">
+                   value="<%= kandydatList[indexkandydat].idLista %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_idLista" class="errors-text"></span>
             <br>
             <input id="idUgrupowanie" type="text" name="idUgrupowanie" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].idUgrupowanie %>">
+                   value="<%= kandydatList[indexkandydat].idUgrupowanie %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_idUgrupowanie" class="errors-text"></span>
             <br>
             <input id="idKandydujeDo" type="text" name="idKandydujeDo" style="padding: 10px"
-                   value="<%= kandydatList[indexkandydat].idKandydujeDo %>">
+                   value="<%= kandydatList[indexkandydat].idKandydujeDo %>"><span class="required"><sup>*</sup></span>
+            <span id="errors_idKandydujeDo" class="errors-text"></span>
             <div class="buttonMore">
                 <input type="submit" value="Zapisz" class="action-btn"></input>
             </div>

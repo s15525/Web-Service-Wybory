@@ -27,21 +27,30 @@
         <label>IdKandydujeDo</label>
     </div>
     <div class="wartosci">
-        <form action="/addKandydat" method="POST">
+        <form id="dbService" action="/addKandydat" method="POST">
+            <p>
             <input type="hidden" name="wyboryId" style="padding: 10px" value="<%=wyboryId%>">
-            <input type="text" name="miejsce" style="padding: 10px">
+            <input type="text" id="miejsce" name="miejsce" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_miejsce" class="errors-text"></span>
             <br>
-            <input type="text" name="imie" style="padding: 10px">
+            <input type="text" id="imie" name="imie" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_imie" class="errors-text"></span>
             <br>
-            <input type="text" name="nazwisko" style="padding: 10px">
+            <input type="text" id="nazwisko" name="nazwisko" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_nazwisko" class="errors-text"></span>
             <br>
-            <input type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px">
+            <input type="text" id="nrLegitymacjiPoselskiej" name="nrLegitymacjiPoselskiej" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_nrLegitymacjiPoselskiej" class="errors-text"></span>
             <br>
-            <input type="text" name="idLista" style="padding: 10px">
+            <input type="text" id="idLista" name="idLista" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_idLista" class="errors-text"></span>
             <br>
-            <input type="text" name="idUgrupowanie" style="padding: 10px">
+            <input type="text" id="idUgrupowanie" name="idUgrupowanie" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_idUgrupowanie" class="errors-text"></span>
             <br>
-            <input type="text" name="idKandydujeDo" style="padding: 10px">
+            <input type="text" id="idKandydujeDo" name="idKandydujeDo" style="padding: 10px"><span class="required"><sup>*</sup></span>
+            <span id="errors_idKandydujeDo" class="errors-text"></span>
+            </p>
             <div class="buttonMore">
                 <input type="submit" value="Zapisz" class="action-btn"></input>
             </div>
