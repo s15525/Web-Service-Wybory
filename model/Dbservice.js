@@ -38,22 +38,30 @@ class Dbservice {
     }
 
     static delete(idwybory, idkandydat) {
-        console.log(idwybory + " " + idkandydat);
+        var indexRecord;
         for (var i = 0; i <= KandydatWyboryObject.length - 1; i++) {
-            if (KandydatWyboryObject[i][0].id == idwybory) {
-
+            if (KandydatWyboryObject[i][1].id == idwybory) {
+                if (KandydatWyboryObject[i][0].id == idkandydat){
+                   indexRecord = KandydatWyboryObject.findIndex(x => x == KandydatWyboryObject[i]);
+                   console.log(indexRecord);
+                    return KandydatWyboryObject.splice(indexRecord,1)
+                }
             }
         }
     }
 
+    static add(wybory,kandydatprz){
+        wyborcaTable = wyborca.getTable();
+        kandydatTable = kandydat.getTable();
+        KandydatWyboryObject.push([kandydatprz, wybory])
+    }
+
     static addWybory(idKandydat, wybory) {
-        wyborca.add(wybory);
         wyborcaTable = wyborca.getTable();
         KandydatWyboryObject.push([kandydatTable.find(x => x.id == idKandydat), wybory])
     }
 
     static addKandydat(idWybory, kandydatprz) {
-        kandydat.add(kandydatprz);
         kandydatTable = kandydat.getTable();
         KandydatWyboryObject.push([kandydatprz,wyborcaTable.find(x => x.id == idWybory) ])
     }

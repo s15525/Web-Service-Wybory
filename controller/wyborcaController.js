@@ -91,7 +91,7 @@ router.get("/NowyRekordWieledoWiele", (req, res, next) => {
 
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
-    if(req.body.kandydatId != undefined) {
+    if(req.body.kandydatId === undefined) {
         Wyborca.add(newWyborca);
         res.redirect("/PanelAdministratora?page_last=0&page_next=10");
     }else{
@@ -111,6 +111,15 @@ router.post("/addKandydat", (req, res, next) => {
         Dbservice.addKandydat(req.body.wyboryId,newKandydat);
         res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
     }
+});
+
+router.post("/addMoreToMore", (req, res, next) => {
+    const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
+    const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo);
+    Kandydat.add(newKandydat);
+    Wyborca.add(newWyborca);
+    Dbservice.add(newWyborca,newKandydat);
+    res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
 });
 
 router.post("/edit", (req, res, next) => {
