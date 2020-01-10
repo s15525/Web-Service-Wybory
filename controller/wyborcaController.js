@@ -91,7 +91,6 @@ router.get("/NowyRekordWieledoWiele", (req, res, next) => {
 
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
-    console.log(req.body.kandydatId);
     if( req.body.kandydatId == "") {
         Wyborca.add(newWyborca);
         res.redirect("/PanelAdministratora?page_last=0&page_next=10");
@@ -104,7 +103,7 @@ router.post("/addWybory", (req, res, next) => {
 
 router.post("/addKandydat", (req, res, next) => {
     const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo);
-    if(req.body.wyboryId === undefined) {
+    if(req.body.wyboryId == "") {
         Kandydat.add(newKandydat);
     res.redirect("/PanelAdministratora?page_last=0&page_next=10");
     }else{

@@ -2,19 +2,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('Wybory');
     const fielddata = document.getElementById('data');
     const errorsdata = document.getElementById('errors_data');
+    const fieldgodzinaR = document.getElementById('godzinaR');
+    const errorsgodzinaR = document.getElementById('errors_godzinaR');
+    const fieldgodzinaZ = document.getElementById('godzinaZ');
+    const errorsgodzinaZ = document.getElementById('errors_godzinaZ');
     const errorsSummary = document.getElementById('errors_summary');
     const errorsInfo = document.getElementById('errors_info');
     var errorMessages = {
-        wymagane: "To pole jest wymagane! ",
-        pesel: "Podaj porawny pesel zawierający 11 cyfr -RRMMDDPPPPK! ",
-        data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! ",
-        litery: "Pole nie moze zawierac liter! ",
-        cyfry: "Pole nie moze zwierac cyfr! "
+        godzinaR: "Podaj godzine R w poprawnym formacie ! 00:00",
+        godzinaZ: "Podaj godzine Z w poprawnym formacie ! 00:00",
+        data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! 00/00/0000 ",
     };
-    var numbers = /[0-9]/;
-    var letters = /[a-zA-Z]/;
     var date = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
-    var spacja = /\s/
+    var timeFormat = /^([0-9]{2})\:([0-9]{2})$/;
 
     function validateForm(e) {
         let messages = [];
@@ -30,9 +30,33 @@ document.addEventListener('DOMContentLoaded', function () {
             fielddata.className = "";
         }
 
+        if (!timeFormat.test(fieldgodzinaZ.value)) {
+            fieldgodzinaZ.style.border = "2px solid red";
+            messages.push(errorMessages['godzinaZ']);
+            errorsgodzinaZ.innerHTML = errorMessages['godzinaZ'];
+        } else {
+            fieldgodzinaZ.style.border = "";
+            errorsgodzinaZ.innerHTML = "";
+            fieldgodzinaZ.className = "";
+        }
+
+        if (!timeFormat.test(fieldgodzinaR.value)) {
+            fieldgodzinaR.style.border = "2px solid red";
+            messages.push(errorMessages['godzinaR']);
+            errorsgodzinaR.innerHTML = errorMessages['godzinaR'];
+        } else {
+            fieldgodzinaR.style.border = "";
+            errorsgodzinaR.innerHTML = "";
+            fieldgodzinaR.className = "";
+        }
+
+
+
         if (messages.length > 0) {
             valid = false;
             fielddata.className = "errors-input";
+            fieldgodzinaZ.className = "errors-input";
+            fieldgodzinaR.className = "errors-input";
 
             e.preventDefault();
         } else {
