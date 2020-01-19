@@ -141,7 +141,6 @@ h1 {
 
 .admin_table table{
     margin: 0 auto;
-    width: 30%;
     border-collapse: collapse;
 }
 .admin_table td, th{

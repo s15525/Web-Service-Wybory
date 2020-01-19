@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const errorsSummary = document.getElementById('errors_summary');
     const errorsInfo = document.getElementById('errors_info');
     var errorMessages = {
-        godzinaR: "Podaj godzine R w poprawnym formacie ! 00:00",
-        godzinaZ: "Podaj godzine Z w poprawnym formacie ! 00:00",
-        data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! 00/00/0000 ",
+        godzinaR: "Podaj godzine R w poprawnym formacie ! 00:00:00",
+        godzinaZ: "Podaj godzine Z w poprawnym formacie ! 00:00:00",
+        data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! 0000-00-00 ",
     };
-    var date = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
-    var timeFormat = /^([0-9]{2})\:([0-9]{2})$/;
+    var date = /^\d{4}-\d{2}-\d{2}$/;
+    var timeFormat = /^([0-9]{2})\:([0-9]{2})\:([0-9]{2})$/;
 
     function validateForm(e) {
         let messages = [];

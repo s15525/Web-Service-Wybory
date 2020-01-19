@@ -46,8 +46,13 @@ router.get("/NowyRekordKandydat", (req, res, next) => {
 });
 
 router.get("/Edycja", (req, res, next) => {
-    const wyborcaList = Wyborca.list();
-    res.render('Edycja', {wyborcaId: req.query.wyborca_id, wyborcaList: wyborcaList});
+    Wyborca.getListFromId(req.query.wyborca_id).then(
+        ([wyborcaList, metadata]) => {
+            console.log(wyborcaList);
+            res.render('Edycja', {wyborcaId: req.query.wyborca_id, wyborcaList: wyborcaList});
+        }).catch(err => {
+        console.log(err);
+    });
 });
 
 router.get("/Usun", (req, res, next) => {
@@ -55,14 +60,19 @@ router.get("/Usun", (req, res, next) => {
     res.redirect("/PanelAdministratora?page_last=0&page_next=10");
 });
 
+router.get("/Szczegoly", (req, res, next) => {
+    Wyborca.getListFromId(req.query.wyborca_id).then(
+        ([wyborcaList, metadata]) => {
+            console.log(wyborcaList);
+            res.render('Szczegoly', {wyborcaId: req.query.wyborca_id, wyborcaList: wyborcaList});
+        }).catch(err => {
+        console.log(err);
+    });
+});
+
 router.get("/UsunWieleDoWiele", (req, res, next) => {
     Dbservice.delete(req.query.wyborca_id, req.query.kandydat_id);
     res.redirect("/PanelAdministratoraWieledoWiele?page_last=0&page_next=10");
-});
-
-router.get("/Szczegoly", (req, res, next) => {
-    const wyborcaList = Wyborca.list();
-    res.render('Szczegoly', {wyborcaId: req.query.wyborca_id, wyborcaList: wyborcaList})
 });
 
 router.get("/SzczegolyWieleDoWiele", (req, res, next) => {

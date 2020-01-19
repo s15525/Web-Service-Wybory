@@ -9,7 +9,6 @@
 <body>
 <h1>Edycja</h1>
 <div class="more">
-    <%var indexwyborca = wyborcaList.findIndex( x => x.idwybory == wyborcaId);%>
     <h2>Wybory</h2>
     <div class="przypisy">
         <label>Id wybory</label>
@@ -28,15 +27,15 @@
         <form action="/edit" method="POST">
             <input id="idwybory" type="text" name="idwybory" style="padding: 10px" value="<%=wyborcaId%>"></input>
             <br>
-            <input id="data" type="text" name="data" style="padding: 10px" value="<%= wyborcaList[indexwyborca].data%>">
+            <input id="data" type="text" name="data" style="padding: 10px" value="<%= wyborcaList[0].data %>">
             <br>
-            <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px" value="<%= wyborcaList[indexwyborca].frekwencja%>">
+            <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px" value="<%= wyborcaList[0].frekwencja%>">
             <br>
-            <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px"  value="<%= wyborcaList[indexwyborca].godzinaR%>">
+            <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px"  value="<%= wyborcaList[0].godzinaR%>">
             <br>
-            <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px"  value="<%= wyborcaList[indexwyborca].godzinaZ%>">
+            <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px"  value="<%= wyborcaList[0].godzinaZ%>">
             <br>
-            <input id="ING" type="text" name="ING" style="padding: 10px"  value="<%= wyborcaList[indexwyborca].ING%>">
+            <input id="ING" type="text" name="ING" style="padding: 10px"  value="<%= wyborcaList[0].ING%>">
             <div class="buttonMore">
                 <input type="submit" value="Zapisz" class="action-btn"></input>
             </div>

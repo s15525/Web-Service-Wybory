@@ -2,11 +2,11 @@ const db = require('../db/mysql');
 //licznik id
 let nextId = 1;
 //ekstensja klasy (wszystkie obiekty)
- const wyborcaExtent = [];
+const wyborcaExtent = [];
 
 class Wyborca {
     //parametr id jest na końcu, bo jest opcjonalny
-    constructor(ING,godzinaZ,godzinaR,frekwencja, data, idwybory) {
+    constructor(ING, godzinaZ, godzinaR, frekwencja, data, idwybory) {
         this.idwybory = idwybory;
         this.frekwencja = frekwencja;
         this.godzinaR = godzinaR;
@@ -15,35 +15,37 @@ class Wyborca {
         this.ING = ING;
     }
 
-    // static getTable(){
-    //     return db.execute('select * from Wyborca');
-    // }
+    static getTable(){
+        return db.execute('select * from Wybory');
+    }
 
     //dodawanie obiektu do bazy
     static add(wyborca) {
-         wyborca.idwybory = nextId++;
-        return db.execute(
-            'insert into users (idwybory, data, frekwencja, godzinaR, godzinaZ, ING) values (?, ?, ?, ?, ?, ?)',
-            [wyborca.id, wyborca.data , wyborca.frekwencja , wyborca.godzinaR , wyborca.godzinaZ , wyborca.ING]
-        );
+      return db.execute('SELECT MAX(`idwybory`) a FROM `portal`.`Wybory`').then(([max, metadata]) => {
+            wyborca.idwybory = max[0].a + 1
+            db.execute(
+                'insert into `portal`.`Wybory` (idwybory, data, frekwencja, godzinaR, godzinaZ, ING) values (?, ?, ?, ?, ?, ?)',
+                [wyborca.idwybory, wyborca.data, wyborca.frekwencja, wyborca.godzinaR, wyborca.godzinaZ, wyborca.ING]
+            );
+        });
     }
-    //pobranie listy obiektów
-    //metoda nie powinna pobierać nadmiarowych danych
-    //(np. przez złączenia JOIN w relacyjnej bazie danych)
-    //które nie będą wyświetlane na liście
+
     static list() {
         return db.execute('select * from Wybory');
     }
 
+    static getListFromId(id){
+        return db.execute('select * from Wybory WHERE `idwybory` ='+ id );
+    }
+
     static edit(wyborca) {
-        const index = wyborcaExtent.findIndex(x => x.idwybory == wyborca.idwybory);
-        wyborcaExtent[index] = wyborca;
-        return wyborca;
+        return  db.execute('UPDATE `portal`.`Wybory` SET `data` = ? , `frekwencja` = ?, `godzinaR` = ?, `godzinaZ` =  ? ,`ING` =  ? WHERE `idwybory` = '+ wyborca.idwybory,
+            [wyborca.data, wyborca.frekwencja, wyborca.godzinaR, wyborca.godzinaZ, wyborca.ING]
+            );
     }
 
     static delete(id) {
-        const index = wyborcaExtent.findIndex(x => x.idwybory === idwybory)
-        return wyborcaExtent.splice(index,1)
+        return db.execute('DELETE FROM `portal`.`Wybory` WHERE `idwybory`= ' + id);
     }
 
 }

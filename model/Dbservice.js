@@ -48,22 +48,22 @@ class Dbservice {
             }
         }
     }
-
-    static add(wybory,kandydatprz){
-        wyborcaTable = wyborca.getTable();
-        kandydatTable = kandydat.getTable();
-        KandydatWyboryObject.push([kandydatprz, wybory])
-    }
-
-    static addWybory(idKandydat, wybory) {
-        wyborcaTable = wyborca.getTable();
-        KandydatWyboryObject.push([kandydatTable.find(x => x.idkandydat == idKandydat), wybory])
-    }
-
-    static addKandydat(idWybory, kandydatprz) {
-        kandydatTable = kandydat.getTable();
-        KandydatWyboryObject.push([kandydatprz,wyborcaTable.find(x => x.idwybory == idWybory) ])
-    }
+    //
+    // static add(wybory,kandydatprz){
+    //     wyborcaTable = wyborca.getTable();
+    //     kandydatTable = kandydat.getTable();
+    //     KandydatWyboryObject.push([kandydatprz, wybory])
+    // }
+    //
+    // static addWybory(idKandydat, wybory) {
+    //     wyborcaTable = wyborca.getTable();
+    //     KandydatWyboryObject.push([kandydatTable.find(x => x.idkandydat == idKandydat), wybory])
+    // }
+    //
+    // static addKandydat(idWybory, kandydatprz) {
+    //     kandydatTable = kandydat.getTable();
+    //     KandydatWyboryObject.push([kandydatprz,wyborcaTable.find(x => x.idwybory == idWybory) ])
+    // }
 }
 
 module.exports = Dbservice;
