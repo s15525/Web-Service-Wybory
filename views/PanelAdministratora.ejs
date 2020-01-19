@@ -30,13 +30,13 @@
         <% for( var i = page_last ; i <= page_next-1 ; i++) { %>
             <% if (i <= wyborcaList.length-1){ %>
                 <tr>
-                    <td><%= wyborcaList[i].id %></td>
+                    <td><%= wyborcaList[i].idwybory %></td>
                     <td><%= wyborcaList[i].data %></td>
                     <td><%= wyborcaList[i].frekwencja %></td>
                     <td class="actions">
-                        <a href="/Szczegoly?wyborca_id=<%= wyborcaList[i].id %>">Szczegoly</a>
-                        <a href="/Edycja?wyborca_id=<%= wyborcaList[i].id %>">Edytuj</a>
-                        <a href="/Usun?wyborca_id=<%= wyborcaList[i].id %>">Usuń</a>
+                        <a href="/Szczegoly?wyborca_id=<%= wyborcaList[i].idwybory %>">Szczegoly</a>
+                        <a href="/Edycja?wyborca_id=<%= wyborcaList[i].idwybory %>">Edytuj</a>
+                        <a href="/Usun?wyborca_id=<%= wyborcaList[i].idwybory %>">Usuń</a>
                     </td>
                 </tr>
             <% }else{ %>

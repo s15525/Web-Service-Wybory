@@ -5,8 +5,8 @@ const kandydatExtent = [];
 
 class Kandydat {
     //parametr id jest na końcu, bo jest opcjonalny
-    constructor(miejsce,imie,nazwisko,nrLegitymacjiPoselskiej, idLista,idUgrupowanie,idKandydujeDo, id) {
-        this.id = id;
+    constructor(miejsce,imie,nazwisko,nrLegitymacjiPoselskiej, idLista,idUgrupowanie,idKandydujeDo, idkandydat) {
+        this.idkandydat = idkandydat;
         this.miejsce = miejsce;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -22,7 +22,7 @@ class Kandydat {
 
     //dodawanie obiektu do bazy
     static add(kandydat) {
-        kandydat.id = nextId++;
+        kandydat.idkandydat = nextId++;
         kandydatExtent.push(kandydat);
         return kandydat;
     }
@@ -35,12 +35,13 @@ class Kandydat {
     }
 
     static edit(kandydat) {
-        kandydatExtent[kandydat.id-1] = kandydat;
+        const index = wyborcaExtent.findIndex(x => x.idkandydat == kandydat.idwybory);
+        kandydatExtent[index] = kandydat;
         return kandydat;
     }
 
     static delete(id) {
-        const index = kandydatExtent.findIndex(x => x.id === id)
+        const index = kandydatExtent.findIndex(x => x.idkandydat === id)
         return kandydatExtent.splice(index,1)
     }
 

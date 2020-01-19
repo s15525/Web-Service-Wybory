@@ -5,14 +5,17 @@
     <title>Panel Administratora</title>
     <link rel="stylesheet" type="text/css" href="css/Main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/Wybory.js"></script>
 </head>
 <body>
 <div class="Menu">
     <h1>Edycja rekord wiele do wiele</h1>
 </div>
 <div class="boxmore">
-    <% var indexkandydat = kandydatList.findIndex(x => x.id == kandydatId); %>
-    <% var indexwyborca = wyborcaList.findIndex(x => x.id == wyborcaId); %>
+    <% var indexkandydat = kandydatList.findIndex(x => x.idkandydat == kandydatId); %>
+    <% var indexwyborca = wyborcaList.findIndex(x => x.idwybory == wyborcaId); %>
     <div class="more">
         <h2>Wybory</h2>
         <br>
@@ -30,29 +33,29 @@
             <label style="padding: 10px">Ilosc nie waznych glosow</label>
         </div>
         <div class="wartosci">
-            <form id="dbService" action="/editMoreToMore" method="POST">
+            <form id="Wybory" action="/editMoreToMore" method="POST">
                 <label style="padding: 10px"><%= wyborcaId %></label>
                 <input id="idwybory" type="hidden" name="idwybory" style="padding: 10px"
-                       value="<%= wyborcaId %>"><span class="required"><sup>*</sup></span>
+                       value="<%= wyborcaId %>">
                 <br>
                 <input id="data" type="text" name="data" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].data %>"><span class="required"><sup>*</sup></span>
+                       value="<%= wyborcaList[indexwyborca].data %>">
                 <br>
                 <span id="errors_data" class="errors-text"></span>
                 <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].frekwencja %>"><span class="required"><sup>*</sup></span>
+                       value="<%= wyborcaList[indexwyborca].frekwencja %>">
                 <span id="errors_frekwencja" class="errors-text"></span>
                 <br>
                 <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].godzinaR %>"><span class="required"><sup>*</sup></span>
+                       value="<%= wyborcaList[indexwyborca].godzinaR %>">
                 <span id="errors_godzinaR" class="errors-text"></span>
                 <br>
                 <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].godzinaZ %>"><span class="required"><sup>*</sup></span>
+                       value="<%= wyborcaList[indexwyborca].godzinaZ %>">
                 <span id="errors_godzinaZ" class="errors-text"></span>
                 <br>
                 <input id="ING" type="text" name="ING" style="padding: 10px"
-                       value="<%= wyborcaList[indexwyborca].ING %>"><span class="required"><sup>*</sup></span>
+                       value="<%= wyborcaList[indexwyborca].ING %>">
                 <span id="errors_ING" class="errors-text"></span>
         </div>
     </div>
@@ -60,21 +63,21 @@
         <h2>Kandydat</h2>
         <br>
         <div class="przypisy">
-            <label style="padding: 10px">Id Kandydat</label>
+            <label style="padding: 20px">Id Kandydat</label>
             <br>
-            <label style="padding: 10px">Miejsce</label>
+            <label style="padding: 20px">Miejsce</label>
             <br>
-            <label style="padding: 10px">Imie</label>
+            <label style="padding: 20px">Imie</label>
             <br>
-            <label style="padding: 10px">Nazwisko</label>
+            <label style="padding: 20px">Nazwisko</label>
             <br>
-            <label style="padding: 10px">NrLegitymacjiPoselskiej</label>
+            <label style="padding: 20px">NrLegitymacjiPoselskiej</label>
             <br>
-            <label style="padding: 10px">IdLista</label>
+            <label style="padding: 20px">IdLista</label>
             <br>
-            <label style="padding: 10px">IdUgrupowanie</label>
+            <label style="padding: 20px">IdUgrupowanie</label>
             <br>
-            <label style="padding: 10px">IdKandydujeDo</label>
+            <label style="padding: 20px">IdKandydujeDo</label>
             <br>
         </div>
         <div class="wartosci">

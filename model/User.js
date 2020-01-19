@@ -5,8 +5,8 @@ const userExtent = [];
 
 class User {
     //parametr id jest na końcu, bo jest opcjonalny
-    constructor(email, login, haslo, imie, nazwisko, pesel ,dataUrodzenia ,nrDowodu,id) {
-        this.id = id;
+    constructor(email, login, haslo, imie, nazwisko, pesel ,dataUrodzenia ,nrDowodu,idUser) {
+        this.idUser = idUser;
         this.email = email;
         this.login = login;
         this.haslo = haslo;
@@ -17,9 +17,9 @@ class User {
         this.nrDowodu = nrDowodu;
     }
     static addUser(user) {
-        user.id = nextId++;
+        user.idUser = nextId++;
         userExtent.push(user);
-        console.log(userExtent)
+        console.log(userExtent);
         return user;
     }
 }
