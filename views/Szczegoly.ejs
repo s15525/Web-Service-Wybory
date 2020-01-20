@@ -10,7 +10,6 @@
 <h1>Szczegoly</h1>
 <h2 style="text-align: center">Wybory</h2>
 <div class="more">
-    <%var indexwyborca = wyborcaList.findIndex( x => x.idwybory == wyborcaId);%>
     <div class="przypisy">
     <label>Id Wybory</label>
     <br>
@@ -27,15 +26,15 @@
     <div class="wartosci">
     <label><%=wyborcaId%></label>
     <br>
-    <label><%= wyborcaList[indexwyborca].data%></label>
+    <label><%= wyborcaList[0].data%></label>
     <br>
-    <label><%= wyborcaList[indexwyborca].frekwencja%></label>
+    <label><%= wyborcaList[0].frekwencja%></label>
     <br>
-    <label><%= wyborcaList[indexwyborca].godzinaR%></label>
+    <label><%= wyborcaList[0].godzinaR%></label>
     <br>
-    <label><%= wyborcaList[indexwyborca].godzinaZ%></label>
+    <label><%= wyborcaList[0].godzinaZ%></label>
     <br>
-    <label><%= wyborcaList[indexwyborca].ING%></label>
+    <label><%= wyborcaList[0].ING%></label>
     </div>
 </div>
 <div class="buttonMore">

@@ -21,7 +21,7 @@ class User {
             user.idUser = max[0].a + 1;
             db.execute(
                 'insert into `portal`.`User` (idUser,imie, nazwisko, pesel, dataUrodzenia, nrDowodu, idUzytkownik) values (?, ?, ?, ?, ?, ?,?)',
-                [user.idUser,user.imie,user.nazwisko,user.pesel,user.dataUrodzenia,user.nrDowodu]
+                [user.idUser,user.imie,user.nazwisko,user.pesel,user.dataUrodzenia,user.nrDowodu,null]
             );
         });
     }
