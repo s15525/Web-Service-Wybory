@@ -1,7 +1,4 @@
-//licznik id
-let nextId = 1;
-//ekstensja klasy (wszystkie obiekty)
-const kandydatExtent = [];
+const db = require('../db/mysql');
 
 class Kandydat {
     //parametr id jest na końcu, bo jest opcjonalny
@@ -16,47 +13,35 @@ class Kandydat {
         this.idKandydujeDo = idKandydujeDo;
     }
 
-    static getTable(){
-        return kandydatExtent;
+    static findindex(){
+        return db.execute('SELECT MAX(`idkandydat`) b FROM `portal`.`Kandydat`');
     }
 
     //dodawanie obiektu do bazy
     static add(kandydat) {
-        kandydat.idkandydat = nextId++;
-        kandydatExtent.push(kandydat);
-        return kandydat;
+        return db.execute('SELECT MAX(`idkandydat`) a FROM `portal`.`Kandydat`').then(([max, metadata]) => {
+            kandydat.idkandydat = max[0].a + 1;
+            db.execute(
+                'insert into `portal`.`Kandydat` (idkandydat, miejsce, imie, nazwisko, nrLegitymacjiPoselskiej, idLista, idUgrupowanie, idKandydujeDo) values (?, ?, ?, ?, ?, ?,?,?)',
+                [kandydat.idkandydat,kandydat.miejsce,kandydat.imie,kandydat.nazwisko,kandydat.nrLegitymacjiPoselskiej,kandydat.idLista,kandydat.idUgrupowanie,kandydat.idKandydujeDo]
+            );
+        });
     }
-    //pobranie listy obiektów
-    //metoda nie powinna pobierać nadmiarowych danych
-    //(np. przez złączenia JOIN w relacyjnej bazie danych)
-    //które nie będą wyświetlane na liście
+
     static list() {
-        return kandydatExtent;
+        return db.execute('select * from Kandydat');
     }
 
     static edit(kandydat) {
-        const index = wyborcaExtent.findIndex(x => x.idkandydat == kandydat.idwybory);
-        kandydatExtent[index] = kandydat;
-        return kandydat;
+        return  db.execute('UPDATE `portal`.`Kandydat` SET `miejsce` = ? , `imie` = ?, `nazwisko` = ?, `nrLegitymacjiPoselskiej` =  ? ,`idLista` =  ? ,`idUgrupowanie` =  ? ,`idKandydujeDo` =  ? WHERE `idkandydat` = '+ kandydat.idkandydat,
+            [kandydat.miejsce,kandydat.imie,kandydat.nazwisko,kandydat.nrLegitymacjiPoselskiej,kandydat.idLista,kandydat.idUgrupowanie,kandydat.idKandydujeDo]
+        );;
     }
 
     static delete(id) {
-        const index = kandydatExtent.findIndex(x => x.idkandydat === id)
-        return kandydatExtent.splice(index,1)
     }
 
-    static initData() {
-        //usuwamy zawartość tablicy
-        kandydatExtent.splice(0,  kandydatExtent.length);
-        //resetujemy licznik id
-        nextId = 1;
-        Kandydat.add(new Kandydat('10', 'Mikolaj',"Kowal","132313123","1","1","1"));
-        Kandydat.add(new Kandydat('16', 'Maciek',"Kowal","132313123","3","3","3"));
-        Kandydat.add(new Kandydat('20', 'Maciek',"Kowal","132313123","8","8","8"));
-    }
 
 }
-
-Kandydat.initData();
 
 module.exports = Kandydat;

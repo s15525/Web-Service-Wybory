@@ -1,8 +1,4 @@
 const db = require('../db/mysql');
-//licznik id
-let nextId = 1;
-//ekstensja klasy (wszystkie obiekty)
-const wyborcaExtent = [];
 
 class Wyborca {
     //parametr id jest na końcu, bo jest opcjonalny
@@ -15,8 +11,8 @@ class Wyborca {
         this.ING = ING;
     }
 
-    static getTable(){
-        return db.execute('select * from Wybory');
+    static findindex(){
+        return db.execute('SELECT MAX(`idwybory`) a FROM `portal`.`Wybory`');
     }
 
     //dodawanie obiektu do bazy

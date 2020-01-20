@@ -10,8 +10,6 @@
 <h1>Szczegoly</h1>
 <div class="box">
     <div class="more">
-        <%var indexkandydat = kandydatList.findIndex( x => x.idkandydat == kandydatId);%>
-        <%var indexwyborca = wyborcaList.findIndex( x => x.idwybory == wyborcaId);%>
         <div class="przypisy">
             <label>Data</label>
             <br>
@@ -24,15 +22,15 @@
             <label>Ilosc nie waznych glosow</label>
         </div>
         <div class="wartosci">
-            <label><%= wyborcaList[indexwyborca].data%></label>
+            <label><%= wyborcaKandydat[0].data%></label>
             <br>
-            <label><%= wyborcaList[indexwyborca].frekwencja%></label>
+            <label><%= wyborcaKandydat[0].frekwencja%></label>
             <br>
-            <label><%= wyborcaList[indexwyborca].godzinaR%></label>
+            <label><%= wyborcaKandydat[0].godzinaR%></label>
             <br>
-            <label><%= wyborcaList[indexwyborca].godzinaZ%></label>
+            <label><%= wyborcaKandydat[0].godzinaZ%></label>
             <br>
-            <label><%= wyborcaList[indexwyborca].ING%></label>
+            <label><%= wyborcaKandydat[0].ING%></label>
         </div>
     </div>
     <div class="more">
@@ -64,19 +62,19 @@
     <label>Id Kandyduje Do</label>
 </div>
 <div class="wartosci">
-    <label><%= kandydatList[indexkandydat].miejsce %></label>
+    <label><%= wyborcaKandydat[0].miejsce %></label>
     <br>
-    <label><%= kandydatList[indexkandydat].imie %></label>
+    <label><%= wyborcaKandydat[0].imie %></label>
     <br>
-    <label><%= kandydatList[indexkandydat].nazwisko %></label>
+    <label><%= wyborcaKandydat[0].nazwisko %></label>
     <br>
-    <label><%= kandydatList[indexkandydat].nrLegitymacjiPoselskiej %></label>
+    <label><%= wyborcaKandydat[0].nrLegitymacjiPoselskiej %></label>
     <br>
-    <label><%= kandydatList[indexkandydat].idLista %></label>
+    <label><%= wyborcaKandydat[0].idLista %></label>
     <br>
-    <label><%= kandydatList[indexkandydat].idUgrupowanie %></label>
+    <label><%= wyborcaKandydat[0].idUgrupowanie %></label>
     <br>
-    <label><%= kandydatList[indexkandydat].idKandydujeDo %></label>
+    <label><%= wyborcaKandydat[0].idKandydujeDo %></label>
 </div>
 </div>
 </div>

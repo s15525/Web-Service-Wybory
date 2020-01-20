@@ -49,7 +49,7 @@
         <h2>Wybory rekrdy</h2>
         <ol>
             <% for(var i = 0 ; i < wyborcaList.length ; i++){ %>
-            <li><a href="/NowyRekordKandydat?wyboryId=<%= wyborcaList[i].id %>"><%= wyborcaList[i].idwybory %></a></li>
+            <li><a href="/NowyRekordKandydat?wyboryId=<%= wyborcaList[i].idwybory %>"><%= wyborcaList[i].idwybory %></a></li>
             <ul>
                 <li><%= wyborcaList[i].data %></li>
                 <li><%= wyborcaList[i].frekwencja %></li>
@@ -61,7 +61,7 @@
         <h2>Kandydat rekrdy</h2>
         <ol>
             <% for(var i = 0 ; i < kandydatList.length ; i++){ %>
-            <li><a href="/NowyRekordWybory?kandydatId=<%= kandydatList[i].id %>"><%= kandydatList[i].id %></a></li>
+            <li><a href="/NowyRekordWybory?kandydatId=<%= kandydatList[i].idkandydat %>"><%= kandydatList[i].idkandydat %></a></li>
             <ul>
                 <li><%= kandydatList[i].imie %></li>
                 <li><%= kandydatList[i].nrLegitymacjiPoselskiej %></li>

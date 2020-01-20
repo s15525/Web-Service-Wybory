@@ -45,9 +45,9 @@
             <% for( var i = page_last ; i <= page_next - 1 ; i++) { %>
                 <% if (i <= wyborcaKandydat.length - 1){ %>
                     <tr>
-                        <td><%= wyborcaKandydat[i][0].idkandydat %></td>
-                        <td><%= wyborcaKandydat[i][0].imie %></td>
-                        <td><%= wyborcaKandydat[i][0].nrLegitymacjiPoselskiej %></td>
+                        <td><%= wyborcaKandydat[i].idkandydat %></td>
+                        <td><%= wyborcaKandydat[i].imie %></td>
+                        <td><%= wyborcaKandydat[i].nrLegitymacjiPoselskiej %></td>
                     </tr>
                 <% }else{ %>
                     <tr>
@@ -67,8 +67,8 @@
             <% for( var i = page_last ; i <= page_next - 1 ; i++) { %>
                 <% if (i <= wyborcaKandydat.length - 1){ %>
                     <tr>
-                        <td><%= wyborcaKandydat[i][0].idkandydat %></td>
-                        <td><%= wyborcaKandydat[i][1].idwybory %></td>
+                        <td><%= wyborcaKandydat[i].idkandydat %></td>
+                        <td><%= wyborcaKandydat[i].idwybory %></td>
                     </tr>
                 <% }else{ %>
                     <tr>
@@ -88,13 +88,13 @@
             <% for( var i = page_last ; i <= page_next - 1 ; i++) { %>
                 <% if (i <= wyborcaKandydat.length - 1){ %>
                     <tr>
-                        <td><%= wyborcaKandydat[i][1].idwybory %></td>
-                        <td><%= wyborcaKandydat[i][1].data %></td>
-                        <td><%= wyborcaKandydat[i][1].frekwencja %></td>
+                        <td><%= wyborcaKandydat[i].idwybory %></td>
+                        <td><%= wyborcaKandydat[i].data %></td>
+                        <td><%= wyborcaKandydat[i].frekwencja %></td>
                         <td class="actions">
-                            <a href="/SzczegolyWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i][0].idkandydat %>&wyborca_id=<%= wyborcaKandydat[i][1].idwybory %>">Szczegoly</a>
-                            <a href="/EdycjaWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i][0].idkandydat %>&wyborca_id=<%= wyborcaKandydat[i][1].idwybory %>">Edytuj</a>
-                            <a href="/UsunWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i][0].idkandydat %>&wyborca_id=<%= wyborcaKandydat[i][1].idwybory %>">Usuń</a>
+                            <a href="/SzczegolyWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i].idkandydat %>&wyborca_id=<%= wyborcaKandydat[i].idwybory %>">Szczegoly</a>
+                            <a href="/EdycjaWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i].idkandydat %>&wyborca_id=<%= wyborcaKandydat[i].idwybory %>">Edytuj</a>
+                            <a href="/UsunWieleDoWiele?kandydat_id=<%= wyborcaKandydat[i].idkandydat %>&wyborca_id=<%= wyborcaKandydat[i].idwybory %>">Usuń</a>
                         </td>
                     </tr>
                 <% }else{ %>

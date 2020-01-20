@@ -1,7 +1,7 @@
 //licznik id
 let nextId = 1;
 //ekstensja klasy (wszystkie obiekty)
-const userExtent = [];
+
 
 class User {
     //parametr id jest na końcu, bo jest opcjonalny
@@ -17,10 +17,13 @@ class User {
         this.nrDowodu = nrDowodu;
     }
     static addUser(user) {
-        user.idUser = nextId++;
-        userExtent.push(user);
-        console.log(userExtent);
-        return user;
+        return db.execute('SELECT MAX(`idUser`) a FROM `portal`.`User`').then(([max, metadata]) => {
+            user.idUser = max[0].a + 1;
+            db.execute(
+                'insert into `portal`.`User` (idUser,imie, nazwisko, pesel, dataUrodzenia, nrDowodu, idUzytkownik) values (?, ?, ?, ?, ?, ?,?)',
+                [user.idUser,user.imie,user.nazwisko,user.pesel,user.dataUrodzenia,user.nrDowodu]
+            );
+        });
     }
 }
 
