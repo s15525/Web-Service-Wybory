@@ -1,8 +1,3 @@
-//licznik id
-let nextId = 1;
-//ekstensja klasy (wszystkie obiekty)
-
-
 class User {
     //parametr id jest na końcu, bo jest opcjonalny
     constructor(email, login, haslo, imie, nazwisko, pesel ,dataUrodzenia ,nrDowodu,idUser) {
@@ -21,7 +16,7 @@ class User {
             user.idUser = max[0].a + 1;
             db.execute(
                 'insert into `portal`.`User` (idUser,imie, nazwisko, pesel, dataUrodzenia, nrDowodu, idUzytkownik) values (?, ?, ?, ?, ?, ?,?)',
-                [user.idUser,user.imie,user.nazwisko,user.pesel,user.dataUrodzenia,user.nrDowodu,null]
+                [user.idUser,user.imie,user.nazwisko,user.pesel,user.dataUrodzenia,user.nrDowodu,0]
             );
         });
     }
