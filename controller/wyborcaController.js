@@ -181,18 +181,20 @@ router.post("/addMoreToMore", (req, res, next) => {
     DbValidate.checkKandydatExist(newKandydat).then(checkkandydat => {
         DbValidate.checkWyborcaExist(newWyborca).then(checkwyborca => {
             if (checkkandydat == true) {
-                if (checkwyborca == true) {
-                    console.log("Istnieje juz taki rekord !!!");
-                    res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-                } else {
-                    Kandydat.add(newKandydat).then(
-                        Wyborca.add(newWyborca).then(
-                            Dbservice.add(newWyborca, newKandydat)
-                        )
+                console.log("Istnieje juz taki rekord !!!");
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            } else if (checkwyborca == true) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            } else {
+                Kandydat.add(newKandydat).then(
+                    Wyborca.add(newWyborca).then(
+                        Dbservice.add(newWyborca, newKandydat)
                     )
-                    res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-                }
+                )
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
             }
+
         })
     })
 });
