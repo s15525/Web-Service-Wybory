@@ -5,9 +5,9 @@ const User = require('../model/User');
 class DbValidate {
     static async checkKandydatExist(kandydatCome) {
         var result;
-        await Wyborca.list().then(([result, metadata]) => {
-                result.forEach(i => {
-                    if (kandydatCome.miejsce == result.miejsce && kandydatCome.imie == result.imie && kandydatCome.nazwisko == result.nazwisko && kandydatCome.nrLegitymacjiPoselskiej == result.nrLegitymacjiPoselskiej) {
+        await Kandydat.list().then(([list, metadata]) => {
+                list.forEach(i => {
+                    if (String(kandydatCome.miejsce) == String(i.miejsce) && String(kandydatCome.imie) == String(i.imie) && String(kandydatCome.nazwisko) == String(i.nazwisko) && String(kandydatCome.nrLegitymacjiPoselskiej) == String(i.nrLegitymacjiPoselskiej)) {
                         result = true;
                     }
                 });
@@ -19,10 +19,10 @@ class DbValidate {
 
     static async checkWyborcaExist(wyborcaCome) {
         var result;
-        await Wyborca.list().then(([result, metadata]) => {
-                result.forEach(i => {
+        await Wyborca.list().then(([list, metadata]) => {
+                list.forEach(i => {
                     if (String(wyborcaCome.frekwencja) == String(i.frekwencja) && String(wyborcaCome.godzinaR) == String(i.godzinaR) && String(wyborcaCome.godzinaZ) == String(i.godzinaZ) && String(wyborcaCome.ING) == String(i.ING)) {
-                        result = true;
+                        list = true;
                     }
                 });
             }
@@ -31,10 +31,13 @@ class DbValidate {
     }
 
     static async checkUserExist(userCome) {
-        await User.list().then(([result, metadata]) => {
-                result.forEach(i => {
-                    if (userCome.data == result.imie && userCome.nazwisko == result.nazwisko && userCome.nrDowodu == result.nrDowodu && userCome.pesel == result.pesel) {
-                        return true;
+        var result;
+        //console.log("tutaj" + userCome.imie + " , " +userCome.nazwisko + " , " +userCome.nrDowodu + " , " + userCome.pesel)
+        await User.list().then(([list, metadata]) => {
+                list.forEach(i => {
+                    //console.log( i.imie + " , " +i.nazwisko + " , " +i.nrDowodu + " , " + i.pesel)
+                    if (String(userCome.imie) == String(i.imie) && String(userCome.nazwisko) == String(i.nazwisko) && String(userCome.nrDowodu) == String(i.nrDowodu) && String(userCome.pesel) == String(i.pesel)) {
+                        result = true;
                     }
                 });
             }

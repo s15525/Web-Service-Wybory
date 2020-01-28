@@ -212,8 +212,15 @@ router.post("/editMoreToMore", (req, res, next) => {
 
 router.post("/addUser", (req, res, next) => {
     const newUser = new User(req.body.email, req.body.login, req.body.haslo, req.body.imie, req.body.nazwisko, req.body.pesel, req.body.dataurodzenia, req.body.nrdowodu);
-    User.addUser(newUser);
-    res.redirect("/");
+    DbValidate.checkUserExist(newUser).then(check => {
+        if (check == true) {
+            console.log("Istnieje juz taki rekord !!!");
+            res.redirect("/");
+        } else {
+            User.addUser(newUser);
+            res.redirect("/");
+        }
+    })
 });
 
 module.exports.route = router;

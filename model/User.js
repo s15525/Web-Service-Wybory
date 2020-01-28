@@ -1,3 +1,5 @@
+const db = require('../db/mysql');
+
 class User {
     //parametr id jest na końcu, bo jest opcjonalny
     constructor(email, login, haslo, imie, nazwisko, pesel ,dataUrodzenia ,nrDowodu,idUser) {
@@ -11,6 +13,11 @@ class User {
         this.dataUrodzenia = dataUrodzenia;
         this.nrDowodu = nrDowodu;
     }
+
+    static list(){
+        return db.execute('SELECT * FROM User');
+    }
+
     static addUser(user) {
         return db.execute('SELECT MAX(`idUser`) a FROM `portal`.`User`').then(([max, metadata]) => {
             user.idUser = max[0].a + 1;
