@@ -126,6 +126,21 @@ router.get("/NowyRekordWieledoWiele", (req, res, next) => {
     });
 });
 
+router.get("/Dodajistniejace", (req, res, next) => {
+    Wyborca.list()
+        .then(([wyborcaList, metadata]) => {
+            Kandydat.list().then(([kandydatList, metadata]) => {
+                console.log(wyborcaList);
+                res.render('Dodajistniejace', {
+                    kandydatList: kandydatList,
+                    wyborcaList: wyborcaList
+                });
+            })
+        }).catch(err => {
+        console.log(err);
+    });
+});
+
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
     DbValidate.checkWyborcaExist(newWyborca).then(check => {
@@ -197,6 +212,11 @@ router.post("/addMoreToMore", (req, res, next) => {
 
         })
     })
+});
+
+router.post("/addExistToExist", (req, res, next) => {
+    Dbservice.addExistToExist(req.body.kandydat,req.body.wybory)
+    res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
 });
 
 router.post("/edit", (req, res, next) => {

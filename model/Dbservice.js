@@ -33,6 +33,9 @@ class Dbservice {
     });
     }
 
+    static addExistToExist(idwyboryCome,idkandydatCome){
+        return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [idwyboryCome,idkandydatCome ])
+    }
 
     static addWybory(idKandydat, wybory) {
         wyborca.findindex().then(

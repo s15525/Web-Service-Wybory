@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="boxmore">
+        <div class="rekordlist">
+            <form action="/addExistToExist" method="POST">
+            <p>Please select your wybory:</p>
+            <% for(var i = 0 ; i < wyborcaList.length ; i++){ %>
+                <input type="radio" id="wybory" name="wybory" value=<%= wyborcaList[i].idwybory %>><%= wyborcaList[i].data %>
+            <% } %>
+        </div>
+        <div class="rekordlist">
+            <p>Please select your kandydat:</p>
+            <% for(var i = 0 ; i < kandydatList.length ; i++){ %>
+                <input type="radio" id="kandydat" name="kandydat" value=<%= kandydatList[i].idkandydat %>>
+                Imie: <%= kandydatList[i].imie %>
+                Nazwisko: <%= kandydatList[i].nazwisko %>
+            <% } %>
+        </div>
+    <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
