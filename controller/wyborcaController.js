@@ -128,65 +128,73 @@ router.get("/NowyRekordWieledoWiele", (req, res, next) => {
 
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
-    if (req.body.kandydatId == "") {
-        if (DbValidate.checkWyborcaExist(newWyborca) != true) {
-            console.log("Istnieje juz taki rekord !!!");
-            res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+    DbValidate.checkWyborcaExist(newWyborca).then(check => {
+        if (req.body.kandydatId == "") {
+            if (check == true) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            } else {
+                Wyborca.add(newWyborca);
+                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            }
         } else {
-            Wyborca.add(newWyborca);
-            res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            if (check == true) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            } else {
+                Wyborca.add(newWyborca).then(
+                    Dbservice.addWybory(req.body.kandydatId, newWyborca));
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            }
         }
-    } else {
-        if (DbValidate.checkWyborcaExist(newWyborca) != true) {
-            console.log("Istnieje juz taki rekord !!!");
-            res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-        } else {
-            Wyborca.add(newWyborca).then(
-                Dbservice.addWybory(req.body.kandydatId, newWyborca));
-            res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-        }
-    }
+    })
 });
 
 router.post("/addKandydat", (req, res, next) => {
     const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo);
-    if (req.body.wyboryId == "") {
-        if (DbValidate.checkKandydatExist(newKandydat) != true) {
-            console.log("Istnieje juz taki rekord !!!");
-            res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+    DbValidate.checkKandydatExist(newKandydat).then(check => {
+        if (req.body.wyboryId == "") {
+            if (check == true
+            ) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            } else {
+                Kandydat.add(newKandydat);
+                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            }
         } else {
-            Kandydat.add(newKandydat);
-            res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            if (check == true) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            } else {
+                Kandydat.add(newKandydat).then(
+                    Dbservice.addKandydat(req.body.wyboryId, newKandydat));
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            }
         }
-    } else {
-        if (DbValidate.checkKandydatExist(newKandydat) != true) {
-            console.log("Istnieje juz taki rekord !!!");
-            res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-        } else {
-            Kandydat.add(newKandydat).then(
-                Dbservice.addKandydat(req.body.wyboryId, newKandydat));
-            res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-        }
-    }
+    })
 });
 
 router.post("/addMoreToMore", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
     const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo);
-    if (DbValidate.checkKandydatExist(newKandydat) != true) {
-        if (DbValidate.checkWyborcaExist(newWyborca) != true) {
-            console.log("Istnieje juz taki rekord !!!");
-            res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-        }else {
-            Kandydat.add(newKandydat).then(
-                Wyborca.add(newWyborca).then(
-                    Dbservice.add(newWyborca, newKandydat)
-                )
-            )
-            res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-        }
-    }
-
+    DbValidate.checkKandydatExist(newKandydat).then(checkkandydat => {
+        DbValidate.checkWyborcaExist(newWyborca).then(checkwyborca => {
+            if (checkkandydat == true) {
+                if (checkwyborca == true) {
+                    console.log("Istnieje juz taki rekord !!!");
+                    res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+                } else {
+                    Kandydat.add(newKandydat).then(
+                        Wyborca.add(newWyborca).then(
+                            Dbservice.add(newWyborca, newKandydat)
+                        )
+                    )
+                    res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+                }
+            }
+        })
+    })
 });
 
 router.post("/edit", (req, res, next) => {

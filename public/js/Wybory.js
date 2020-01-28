@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! 0000-00-00 ",
     };
     var date = /^\d{4}-\d{2}-\d{2}$/;
-    var timeFormat = /^([0-9]{2})\:([0-9]{2})\:([0-9]{2})$/;
+    var timeFormat = /^([0-9]{1})\:([0-9]{2})\:([0-9]{2})$/;
 
     function validateForm(e) {
         let messages = [];
