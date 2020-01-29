@@ -1,12 +1,11 @@
 function ajaxCall(data) { //data as js object
     return new Promise(function (resolve, reject) {
         const xhr = new XMLHttpRequest();
-        xhr.responseType = 'json';
-        xhr.open("POST", "/checkUser", false);
+        xhr.open("POST", "/checkUser");
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
         xhr.onload = function () {
             if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
+                resolve(JSON.parse(xhr.responseText));
             } else {
                 reject({
                     status: this.status,
