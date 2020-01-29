@@ -7,6 +7,8 @@ const port = 3000;
 
 // parsuje dane typu application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+// parser do jsona
+app.use(express.json());
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
