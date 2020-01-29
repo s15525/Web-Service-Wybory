@@ -330,4 +330,16 @@ router.post("/addUser", (req, res, next) => {
     })
 });
 
+router.post("/checkUser", (req, res, next) => {
+    let result = { "status": "success", "error": "" }
+    // make new user object or something you want to check
+    
+    if(/* user exist or sth (remove this later --> ) */ true) {
+        result.status = "error";
+        result.error = "user_exists";
+    } // you can add here more tests for better error handling
+
+    res.json(JSON.stringify(result));
+});
+
 module.exports.route = router;
