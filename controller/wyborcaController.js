@@ -65,13 +65,12 @@ router.get("/PanelAdministratoraUser", (req, res, next) => {
     });
 
 });
+router.get("/NowyRekordKandydat", (req, res, next) => {
+    res.render('NowyRekordKandydat', {wyboryId: req.query.wyboryId});
+});
 
 router.get("/NowyRekordWybory", (req, res, next) => {
     res.render('NowyRekordWybory', {kandydatId: req.query.kandydatId});
-});
-
-router.get("/NowyRekordKandydat", (req, res, next) => {
-    res.render('NowyRekordKandydat', {wyboryId: req.query.wyboryId});
 });
 
 router.get("/Edycja", (req, res, next) => {
@@ -229,7 +228,7 @@ router.post("/addWybory", (req, res, next) => {
         } else {
             if (check == true) {
                 console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+                res.redirect("/takirekordistniejeWybory");
             } else {
                 Wyborca.add(newWyborca).then(
                     Dbservice.addWybory(req.body.kandydatId, newWyborca));
@@ -254,7 +253,7 @@ router.post("/addKandydat", (req, res, next) => {
         } else {
             if (check == true) {
                 console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+                res.redirect("/takirekordistniejeKandydat");
             } else {
                 Kandydat.add(newKandydat).then(
                     Dbservice.addKandydat(req.body.wyboryId, newKandydat));

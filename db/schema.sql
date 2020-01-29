@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS `portal`;
 CREATE TABLE IF NOT EXISTS `portal`.`Wybory`
 (
  `idwybory`              int NOT NULL ,
- `data`                  date NOT NULL ,
+ `data`                  YEAR NOT NULL ,
  `frekwencja`            int NOT NULL ,
  `godzinaR`              time NOT NULL ,
  `godzinaZ`              time NOT NULL ,
@@ -31,13 +31,13 @@ CREATE TABLE IF NOT EXISTS `portal`.`User`
 CREATE TABLE IF NOT EXISTS `portal`.`Kandydat`
 (
  `idkandydat`              int NOT NULL ,
- `miejsce`                 int NOT NULL ,
+ `miejsce`                 varchar(50) NOT NULL ,
  `imie`                    varchar(50) NOT NULL ,
  `nazwisko`                varchar(50) NOT NULL ,
  `nrLegitymacjiPoselskiej` int NOT NULL ,
- `idLista`                 int NOT NULL ,
- `idUgrupowanie`           int NOT NULL ,
- `idKandydujeDo`           int NOT NULL ,
+ `idLista`                 int,
+ `idUgrupowanie`           int,
+ `idKandydujeDo`           int,
 
 
  CONSTRAINT `PK_Kandydat` PRIMARY KEY (`idKandydat` ASC)

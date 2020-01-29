@@ -21,8 +21,14 @@ class DbValidate {
         var result;
         await Wyborca.list().then(([list, metadata]) => {
                 list.forEach(i => {
+                    if(parseInt(i.godzinaR.split(':')[0])< 10 ){
+                        i.godzinaR = 0 + i.godzinaR
+                    };
+                    if(parseInt(i.godzinaZ.split(':')[0])< 10 ){
+                        i.godzinaZ= 0 + i.godzinaZ
+                    };
                     if (String(wyborcaCome.frekwencja) == String(i.frekwencja) && String(wyborcaCome.godzinaR) == String(i.godzinaR) && String(wyborcaCome.godzinaZ) == String(i.godzinaZ) && String(wyborcaCome.ING) == String(i.ING)) {
-                        list = true;
+                        result = true;
                     }
                 });
             }
@@ -32,10 +38,8 @@ class DbValidate {
 
     static async checkUserExist(userCome) {
         var result;
-        //console.log("tutaj" + userCome.imie + " , " +userCome.nazwisko + " , " +userCome.nrDowodu + " , " + userCome.pesel)
         await User.list().then(([list, metadata]) => {
                 list.forEach(i => {
-                    //console.log( i.imie + " , " +i.nazwisko + " , " +i.nrDowodu + " , " + i.pesel)
                     if (String(userCome.imie) == String(i.imie) && String(userCome.nazwisko) == String(i.nazwisko) && String(userCome.nrDowodu) == String(i.nrDowodu) && String(userCome.pesel) == String(i.pesel)) {
                         result = true;
                     }

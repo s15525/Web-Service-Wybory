@@ -6,15 +6,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const errorsgodzinaR = document.getElementById('errors_godzinaR');
     const fieldgodzinaZ = document.getElementById('godzinaZ');
     const errorsgodzinaZ = document.getElementById('errors_godzinaZ');
+    const fieldING = document.getElementById('ING');
+    const fieldFrekwencja = document.getElementById('frekwencja');
     const errorsSummary = document.getElementById('errors_summary');
     const errorsInfo = document.getElementById('errors_info');
+    const errorsistnieje = document.getElementById('errors_istnieje');
     var errorMessages = {
         godzinaR: "Podaj godzine R w poprawnym formacie ! 00:00:00",
         godzinaZ: "Podaj godzine Z w poprawnym formacie ! 00:00:00",
-        data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! 0000-00-00 ",
+        data: "Podaj date w poprawnym formacie zawierającą 8 cyfr! 0000",
+        istnieje: "Podany rekord juz istnieje w bazie !!!"
     };
-    var date = /^\d{4}-\d{2}-\d{2}$/;
-    var timeFormat = /^([0-9]{1})\:([0-9]{2})\:([0-9]{2})$/;
+    var date = /^\d{4}$/;
+    var timeFormat = /^([0-9]{2})\:([0-9]{2})\:([0-9]{2})$/;
 
     function validateForm(e) {
         let messages = [];
@@ -51,13 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-
         if (messages.length > 0) {
             valid = false;
             fielddata.className = "errors-input";
             fieldgodzinaZ.className = "errors-input";
             fieldgodzinaR.className = "errors-input";
-
             e.preventDefault();
         } else {
             errorsSummary.innerHTML = "";
@@ -68,4 +70,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     form.addEventListener('submit', validateForm);
-});
+})
+;
