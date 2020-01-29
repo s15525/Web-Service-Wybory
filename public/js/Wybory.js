@@ -1,7 +1,7 @@
 function ajaxCall(data) { //data as js object
     return new Promise(function (resolve, reject) {
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/checkUser");
+        xhr.open("POST", "/checkWybory");
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
         xhr.onload = function () {
             if (this.status >= 200 && this.status < 300) {
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const fieldING = document.getElementById('ING');
     const fieldFrekwencja = document.getElementById('frekwencja');
     const errorsSummary = document.getElementById('errors_summary');
-    const errorsInfo = document.getElementById('errors_info');
     const errorsistnieje = document.getElementById('errors_istnieje');
     var errorMessages = {
         godzinaR: "Podaj godzine R w poprawnym formacie ! 00:00:00",
@@ -78,7 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
             errorsgodzinaR.innerHTML = "";
             fieldgodzinaR.className = "";
         }
+        let userExists = false;
+        await ajaxCall({
+            date: fielddata,
+            godzinaR: fieldgodzinaR,
+            godzinaZ: fieldgodzinaZ,
+            ING: fieldING,
+            frekwencja: fieldFrekwencja
+        }).then(data => {
+            if (data.status == "fail" && data.error == "user_exists") userExists = true;
+        });
 
+        if (userExists== true){
+            errorsistnieje.innerHTML = errorMessages['istnieje'];
+        }else{
+            errorsistnieje.innerHTML = "";
+        }
 
         if (messages.length > 0) {
             valid = false;
@@ -86,11 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fieldgodzinaZ.className = "errors-input";
             fieldgodzinaR.className = "errors-input";
             e.preventDefault();
-        } else {
-            errorsSummary.innerHTML = "";
-            errorsInfo.innerHTML = "";
         }
-        
         /*
          * example of ajaxCall use:
         let userExists = false;
@@ -100,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if(userExists /* || other tests //) valid = false;
          */
-        
+
         return valid;
     }
 

@@ -216,26 +216,14 @@ router.get("/Dodajistniejace", (req, res, next) => {
 
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
-    DbValidate.checkWyborcaExist(newWyborca).then(check => {
-        if (req.body.kandydatId == "") {
-            if (check == true) {
-                console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
-            } else {
-                Wyborca.add(newWyborca);
-                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
-            }
-        } else {
-            if (check == true) {
-                console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/takirekordistniejeWybory");
-            } else {
-                Wyborca.add(newWyborca).then(
-                    Dbservice.addWybory(req.body.kandydatId, newWyborca));
-                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-            }
-        }
-    })
+    if (req.body.kandydatId == "") {
+        Wyborca.add(newWyborca);
+        //res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+    } else {
+        Wyborca.add(newWyborca).then(
+            Dbservice.addWybory(req.body.kandydatId, newWyborca));
+        //res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+    }
 });
 
 router.post("/addKandydat", (req, res, next) => {
@@ -260,7 +248,7 @@ router.post("/addKandydat", (req, res, next) => {
                 res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
             }
         }
-    })
+    });
 });
 
 router.post("/addMoreToMore", (req, res, next) => {
@@ -288,7 +276,7 @@ router.post("/addMoreToMore", (req, res, next) => {
 });
 
 router.post("/addExistToExist", (req, res, next) => {
-    Dbservice.addExistToExist(req.body.kandydat,req.body.wybory)
+    Dbservice.addExistToExist(req.body.kandydat, req.body.wybory)
     res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
 });
 
@@ -305,7 +293,7 @@ router.post("/editKandydat", (req, res, next) => {
 });
 
 router.post("/editUser", (req, res, next) => {
-    const newUser = new User(req.body.email, req.body.login, req.body.haslo, req.body.imie, req.body.nazwisko, req.body.pesel, req.body.dataUrodzenia,req.body.nrDowodu ,req.body.userId, );
+    const newUser = new User(req.body.email, req.body.login, req.body.haslo, req.body.imie, req.body.nazwisko, req.body.pesel, req.body.dataUrodzenia, req.body.nrDowodu, req.body.userId,);
     User.edit(newUser);
     res.redirect("/PanelAdministratoraUser?page_last=0&page_next=10");
 });
@@ -330,14 +318,17 @@ router.post("/addUser", (req, res, next) => {
     })
 });
 
-router.post("/checkUser", (req, res, next) => {
-    let result = { "status": "success", "error": "" }
+router.post("/checkWybory", (req, res, next) => {
+    let result = {"status": "success", "error": ""}
+    console.log(req.body)
+    const newWyborca = new Wyborca(req.ING, req.godzinaZ, req.godzinaR, req.frekwencja, req.data);
     // make new user object or something you want to check
-    
-    if(/* user exist or sth (remove this later --> ) */ true) {
-        result.status = "error";
-        result.error = "user_exists";
-    } // you can add here more tests for better error handling
+    DbValidate.checkWyborcaExist(newWyborca).then(check => {
+        if (check == true) {
+            result.status = "error";
+            result.error = "user_exists";
+        } // you can add here more tests for better error handling
+    });
 
     res.json(JSON.stringify(result));
 });
