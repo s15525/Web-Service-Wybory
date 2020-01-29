@@ -1,3 +1,29 @@
+function ajaxCall(data) { //data as js object
+    return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'json';
+        xhr.open("POST", "/checkUser", false);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send(JSON.stringify(data));
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('Wybory');
     const fielddata = document.getElementById('data');
@@ -20,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var date = /^\d{4}$/;
     var timeFormat = /^([0-9]{2})\:([0-9]{2})\:([0-9]{2})$/;
 
-    function validateForm(e) {
+    async function validateForm(e) {
         let messages = [];
         let valid = true;
 
@@ -65,7 +91,17 @@ document.addEventListener('DOMContentLoaded', function () {
             errorsSummary.innerHTML = "";
             errorsInfo.innerHTML = "";
         }
-
+        
+        /*
+         * example of ajaxCall use:
+        let userExists = false;
+        await ajaxCall({ imie: "ABC", nazwisko: "DEF" }).then(data => {
+            if(data.status == "fail" && data.error == "user_exists") userExists = true;
+        });
+        
+        if(userExists /* || other tests //) valid = false;
+         */
+        
         return valid;
     }
 
