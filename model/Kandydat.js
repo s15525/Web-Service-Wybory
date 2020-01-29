@@ -38,7 +38,12 @@ class Kandydat {
         );;
     }
 
+    static getListFromId(id){
+        return db.execute('select * from Kandydat WHERE `idkandydat` ='+ id );
+    }
+
     static delete(id) {
+        return db.execute('DELETE FROM `portal`.`Kandydat` WHERE `idkandydat` = ' + id);
     }
 
 

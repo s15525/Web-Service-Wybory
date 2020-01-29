@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegoly</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Szczegoly</h1>
+<h2 style="text-align: center">Wybory</h2>
+<div class="more">
+    <div class="przypisy">
+        <label>Miejsce</label>
+        <br>
+        <label>Imie</label>
+        <br>
+        <label>Nazwisko</label>
+        <br>
+        <label>Nr Legitymacji Poselskiej</label>
+        <br>
+        <label>Id Lista</label>
+        <br>
+        <label>Id Ugrupowanie</label>
+        <br>
+        <label>Id Kandyduje Do</label>
+    </div>
+    <div class="wartosci">
+        <label><%= kandydatList[0].miejsce %></label>
+        <br>
+        <label><%= kandydatList[0].imie %></label>
+        <br>
+        <label><%= kandydatList[0].nazwisko %></label>
+        <br>
+        <label><%= kandydatList[0].nrLegitymacjiPoselskiej %></label>
+        <br>
+        <label><%= kandydatList[0].idLista %></label>
+        <br>
+        <label><%= kandydatList[0].idUgrupowanie %></label>
+        <br>
+        <label><%= kandydatList[0].idKandydujeDo %></label>
+    </div>
+</div>
+<div class="buttonMore">
+    <button><a href="/PanelAdministratoraUser?page_last=0&page_next=10">Powrot</a></button>
+</div>
+</body>
+</html>

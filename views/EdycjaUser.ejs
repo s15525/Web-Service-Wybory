@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Edycja</h1>
+<div class="more">
+    <h2>Kandydat</h2>
+    <div class="przypisy">
+        <label >Imie</label>
+        <br>
+        <label >Nazwisko</label>
+        <br>
+        <label >Pesel</label>
+        <br>
+        <label >Data urodzenia</label>
+        <br>
+        <label >Numer Dowodu</label>
+        <br>
+        <label >Id Uzytkownika</label>
+        <br>
+    </div>
+    <div class="wartosci">
+        <form action="/editUser" method="POST">
+            <input id="userId" type="hidden" name="userId" style="padding: 10px"
+                   value="<%= userId %>">
+            <br>
+            <input id="imie" type="text" name="imie" style="padding: 10px"
+                   value="<%= userList[0].imie %>">
+            <br>
+            <input id="nazwisko" type="text" name="nazwisko" style="padding: 10px"
+                   value="<%= userList[0].nazwisko %>">
+            <br>
+            <input id="pesel" type="text" name="pesel" style="padding: 10px"
+                   value="<%= userList[0].pesel %>">
+            <br>
+            <input id="dataUrodzenia" type="text" name="dataUrodzenia" style="padding: 10px"
+                   value="<%= userList[0].dataUrodzenia %>">
+            <br>
+            <input id="nrDowodu" type="text" name="nrDowodu" style="padding: 10px"
+                   value="<%= userList[0].nrDowodu %>">
+            <br>
+            <input id="idUzytkownik" type="text" name="idUzytkownik" style="padding: 10px"
+                   value="<%= userList[0].idUzytkownik %>">
+            <div class="buttonMore">
+                <input type="submit" value="Zapisz" class="action-btn"></input>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

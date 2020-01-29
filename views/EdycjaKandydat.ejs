@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Edycja</h1>
+<div class="more">
+    <h2>Kandydat</h2>
+    <div class="przypisy">
+        <label >Id Kandydat</label>
+        <br>
+        <label >Miejsce</label>
+        <br>
+        <label >Imie</label>
+        <br>
+        <label >Nazwisko</label>
+        <br>
+        <label >NrLegitymacjiPoselskiej</label>
+        <br>
+        <label >IdLista</label>
+        <br>
+        <label >IdUgrupowanie</label>
+        <br>
+        <label >IdKandydujeDo</label>
+        <br>
+    </div>
+    <div class="wartosci">
+        <form action="/editKandydat" method="POST">
+        <label id="kandydatId" style="padding: 10px"><%= kandydatId %></label>
+        <input id="kandydatId" type="hidden" name="kandydatId" style="padding: 10px"
+               value="<%= kandydatId %>">
+        <br>
+        <input id="miejsce" type="text" name="miejsce" style="padding: 10px"
+               value="<%= kandydatList[0].miejsce %>">
+        <br>
+        <input id="imie" type="text" name="imie" style="padding: 10px"
+               value="<%= kandydatList[0].imie %>">
+        <br>
+        <input id="nazwisko" type="text" name="nazwisko" style="padding: 10px"
+               value="<%= kandydatList[0].nazwisko %>">
+        <br>
+        <input id="nrLegitymacjiPoselskiej" type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px"
+               value="<%= kandydatList[0].nrLegitymacjiPoselskiej %>">
+        <br>
+        <input id="idLista" type="text" name="idLista" style="padding: 10px"
+               value="<%= kandydatList[0].idLista %>">
+        <br>
+        <input id="idUgrupowanie" type="text" name="idUgrupowanie" style="padding: 10px"
+               value="<%= kandydatList[0].idUgrupowanie %>">
+        <br>
+        <input id="idKandydujeDo" type="text" name="idKandydujeDo" style="padding: 10px"
+               value="<%= kandydatList[0].idKandydujeDo %>">
+        <div class="buttonMore">
+            <input type="submit" value="Zapisz" class="action-btn"></input>
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

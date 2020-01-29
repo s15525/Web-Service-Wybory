@@ -38,6 +38,34 @@ router.get("/PanelAdministratora", (req, res, next) => {
 
 });
 
+router.get("/PanelAdministratoraKandydat", (req, res, next) => {
+    Kandydat.list()
+        .then(([kandydatList, metadata]) => {
+            res.render('PanelAdministratoraKandydat', {
+                kandydatList: kandydatList,
+                page_last: req.query.page_last,
+                page_next: req.query.page_next
+            });
+        }).catch(err => {
+        console.log(err);
+    });
+
+});
+
+router.get("/PanelAdministratoraUser", (req, res, next) => {
+    User.list()
+        .then(([userList, metadata]) => {
+            res.render('PanelAdministratoraUser', {
+                userList: userList,
+                page_last: req.query.page_last,
+                page_next: req.query.page_next
+            });
+        }).catch(err => {
+        console.log(err);
+    });
+
+});
+
 router.get("/NowyRekordWybory", (req, res, next) => {
     res.render('NowyRekordWybory', {kandydatId: req.query.kandydatId});
 });
@@ -55,15 +83,61 @@ router.get("/Edycja", (req, res, next) => {
     });
 });
 
+router.get("/EdycjaKandydat", (req, res, next) => {
+    Kandydat.getListFromId(req.query.kandydat_id).then(
+        ([kandydatList, metadata]) => {
+            res.render('EdycjaKandydat', {kandydatId: req.query.kandydat_id, kandydatList: kandydatList});
+        }).catch(err => {
+        console.log(err);
+    });
+});
+
+router.get("/EdycjaUser", (req, res, next) => {
+    User.getListFromId(req.query.user_id).then(
+        ([userList, metadata]) => {
+            res.render('EdycjaUser', {userId: req.query.user_id, userList: userList});
+        }).catch(err => {
+        console.log(err);
+    });
+});
+
 router.get("/Usun", (req, res, next) => {
     Wyborca.delete(req.query.wyborca_id);
     res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+});
+
+router.get("/UsunKandydat", (req, res, next) => {
+    Kandydat.delete(req.query.kandydat_id);
+    res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
+});
+
+router.get("/UsunUser", (req, res, next) => {
+    User.delete(req.query.user_id);
+    res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
 });
 
 router.get("/Szczegoly", (req, res, next) => {
     Wyborca.getListFromId(req.query.wyborca_id).then(
         ([wyborcaList, metadata]) => {
             res.render('Szczegoly', {wyborcaId: req.query.wyborca_id, wyborcaList: wyborcaList});
+        }).catch(err => {
+        console.log(err);
+    });
+});
+
+router.get("/SzczegolyKandydat", (req, res, next) => {
+    Kandydat.getListFromId(req.query.kandydat_id).then(
+        ([kandydatList, metadata]) => {
+            res.render('SzczegolyKandydat', {wyborcaId: req.query.kandydat_id, kandydatList: kandydatList});
+        }).catch(err => {
+        console.log(err);
+    });
+});
+
+router.get("/SzczegolyUser", (req, res, next) => {
+    User.getListFromId(req.query.user_id).then(
+        ([userList, metadata]) => {
+            res.render('SzczegolyUser', {userId: req.query.user_id, userList: userList});
         }).catch(err => {
         console.log(err);
     });
@@ -172,10 +246,10 @@ router.post("/addKandydat", (req, res, next) => {
             if (check == true
             ) {
                 console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+                res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
             } else {
                 Kandydat.add(newKandydat);
-                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+                res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
             }
         } else {
             if (check == true) {
@@ -223,6 +297,18 @@ router.post("/edit", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data, req.body.idwybory);
     Wyborca.edit(newWyborca);
     res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+});
+
+router.post("/editKandydat", (req, res, next) => {
+    const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo, req.body.kandydatId);
+    Kandydat.edit(newKandydat);
+    res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
+});
+
+router.post("/editUser", (req, res, next) => {
+    const newUser = new User(req.body.email, req.body.login, req.body.haslo, req.body.imie, req.body.nazwisko, req.body.pesel, req.body.dataUrodzenia,req.body.nrDowodu ,req.body.userId, );
+    User.edit(newUser);
+    res.redirect("/PanelAdministratoraUser?page_last=0&page_next=10");
 });
 
 router.post("/editMoreToMore", (req, res, next) => {

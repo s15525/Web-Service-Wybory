@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegoly</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<h1>Szczegoly</h1>
+<h2 style="text-align: center">Wybory</h2>
+<div class="more">
+    <div class="przypisy">
+        <label>Imie</label>
+        <br>
+        <label>Nazwisko</label>
+        <br>
+        <label>Pesel</label>
+        <br>
+        <label>Data Urodzenia</label>
+        <br>
+        <label>Numer Dowodu</label>
+        <br>
+        <label>Id Uzytkownik</label>
+    </div>
+    <div class="wartosci">
+        <label><%= userList[0].imie %></label>
+        <br>
+        <label><%= userList[0].nazwisko %></label>
+        <br>
+        <label><%= userList[0].pesel %></label>
+        <br>
+        <label><%= userList[0].dataUrodzenia %></label>
+        <br>
+        <label><%= userList[0].nrDowodu %></label>
+        <br>
+        <label><%= userList[0].idUzytkownik %></label>
+    </div>
+</div>
+<div class="buttonMore">
+    <button><a href="/PanelAdministratoraUser?page_last=0&page_next=10">Powrot</a></button>
+</div>
+</body>
+</html>

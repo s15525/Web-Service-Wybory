@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administratora</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="Menu">
+    <h1>Panel Administratora</h1>
+</div>
+<div class="admin_list">
+    <h2>Encje</h2>
+    <ol>
+        <li><a href="/PanelAdministratora?page_last=0&page_next=10">Wybory</a></li>
+        <li><a href="/PanelAdministratoraKandydat?page_last=0&page_next=10">Kandydat</a></li>
+        <li><a href="/PanelAdministratoraUser?page_last=0&page_next=10">User</a></li>
+        <li>Kolejna encja</li>
+    </ol>
+    <button><a href="/PanelAdministratoraWieledoWiele?page_last=0&page_next=10">Panel administratora wiele do wiele Kandydat</a></button>
+</div>
+<div class="admin_table">
+    <table>
+        <tr>
+            <th>Id kandydat</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+        </tr>
+        <% for( var i = page_last ; i <= page_next-1 ; i++) { %>
+            <% if (i <= kandydatList.length-1){ %>
+                <tr>
+                    <td><%= kandydatList[i].idkandydat %></td>
+                    <td><%= kandydatList[i].imie %></td>
+                    <td><%= kandydatList[i].nazwisko %></td>
+                    <td class="actions">
+                        <a href="/SzczegolyKandydat?kandydat_id=<%= kandydatList[i].idkandydat %>">Szczegoly</a>
+                        <a href="/EdycjaKandydat?kandydat_id=<%= kandydatList[i].idkandydat %>">Edytuj</a>
+                        <a href="/UsunKandydat?kandydat_id=<%= kandydatList[i].idkandydat %>">Usuń</a>
+                    </td>
+                </tr>
+            <% }else{ %>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+        <% }} %>
+    </table>
+</div>
+<div class="admin_button">
+    <table>
+        <tr>
+            <th><a href="/PanelAdministratoraKandydat?page_last=0&page_next=10">0</a></th>
+            <th><a href="/PanelAdministratoraKandydat?page_last=10&page_next=20">10</a></th>
+            <th><a href="/PanelAdministratoraKandydat?page_last=20&page_next=30">20</a></th>
+            <th><a href="/PanelAdministratoraKandydat?page_last=30&page_next=40">30</a></th>
+            <th><a href="/PanelAdministratoraKandydat?page_last=40&page_next=50">40</a></th>
+        </tr>
+    </table>
+    <br>
+    <button><a href="/NowyRekordKandydat">Nowy rekord</a></button>
+</div>
+</body>
+</html>

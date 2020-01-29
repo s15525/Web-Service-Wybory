@@ -26,6 +26,7 @@
     </div>
     <div class="wartosci" >
         <form id="Wybory" action="/addWybory" method="POST">
+            <span id="errors_istnieje" class="errors-text"></span>
             <input id="kandydatId" type="hidden" name="kandydatId" style="padding: 10px" value="<%=kandydatId%>">
             <input type="text" id="data" name="data" style="padding: 10px"><span class="required"><sup>*</sup></span>
             <span id="errors_data" class="errors-text"></span>

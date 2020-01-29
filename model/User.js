@@ -27,6 +27,20 @@ class User {
             );
         });
     }
+
+    static edit(user) {
+        return  db.execute('UPDATE `portal`.`User` SET  `imie` = ?, `nazwisko` = ?, `pesel` =  ? ,`dataUrodzenia` =  ? ,`nrDowodu` =  ? ,`idUzytkownik` =  ? WHERE `idUser` = '+ user.idUser,
+            [user.imie,user.nazwisko,user.pesel,user.dataUrodzenia,user.nrDowodu,0]
+        );;
+    }
+
+    static getListFromId(id){
+        return db.execute('select * from User WHERE `idUser` ='+ id );
+    }
+
+    static delete(id) {
+        return db.execute('DELETE FROM `portal`.`User` WHERE `idUser` = ' + id);
+    }
 }
 
 module.exports = User;
