@@ -20,6 +20,7 @@ class DbValidate {
     static async checkWyborcaExist(wyborcaCome) {
         var result;
         await Wyborca.list().then(([list, metadata]) => {
+           // console.log(wyborcaCome.frekwencja +" , "+ wyborcaCome.godzinaR+" , "+ wyborcaCome.godzinaZ+" , "+ wyborcaCome.ING+" , "+ wyborcaCome.data)
                 list.forEach(i => {
                     if(parseInt(i.godzinaR.split(':')[0])< 10 ){
                         i.godzinaR = 0 + i.godzinaR
@@ -27,7 +28,8 @@ class DbValidate {
                     if(parseInt(i.godzinaZ.split(':')[0])< 10 ){
                         i.godzinaZ= 0 + i.godzinaZ
                     };
-                    if (String(wyborcaCome.frekwencja) == String(i.frekwencja) && String(wyborcaCome.godzinaR) == String(i.godzinaR) && String(wyborcaCome.godzinaZ) == String(i.godzinaZ) && String(wyborcaCome.ING) == String(i.ING)) {
+                   // console.log(i.frekwencja +" , "+ i.godzinaR+" , "+ i.godzinaZ+" , "+ i.ING+" , "+ i.data)
+                    if (String(wyborcaCome.frekwencja) == String(i.frekwencja) && String(wyborcaCome.godzinaR) == String(i.godzinaR) && String(wyborcaCome.godzinaZ) == String(i.godzinaZ) && String(wyborcaCome.ING) == String(i.ING) && wyborcaCome.data == i.data ) {
                         result = true;
                     }
                 });

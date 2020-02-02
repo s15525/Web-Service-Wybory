@@ -13,9 +13,8 @@ class Dbservice {
         return db.execute('SELECT * FROM `portal`.`Kandydujew` INNER JOIN `portal`.`Kandydat` ON `portal`.`Kandydat`.`idkandydat` = `portal`.`Kandydujew`.`idkandydat` INNER JOIN `portal`.`wybory` ON `portal`.`Wybory`.`idwybory` = `portal`.`Kandydujew`.`idwybory` WHERE `portal`.`Kandydat`.`idkandydat` = ? and `portal`.`Wybory`.`idwybory` = ? ', [idkandydat, idwybory]);
     }
 
-    static edit(wybory, kandydatprz) {
-        wyborca.edit(wybory);
-        kandydat.edit(kandydatprz);
+    static edit(idWybory, idKandydat, idWyboryPrzy, idKandydatPrzy) {
+        return db.execute('UPDATE `portal`.`Kandydujew` SET `idwybory` = ? , `idkandydat` = ? WHERE `idkandydat` = ? and `idwybory` = ?', [idWyboryPrzy, idKandydatPrzy, idKandydat, idWybory])
     }
 
     static delete(idwybory, idkandydat) {
@@ -28,13 +27,13 @@ class Dbservice {
                 kandydat.findindex().then(([c, metadata]) => {
                     var maxkandydat = c[0].b;
                     var maxwybory = x[0].a;
-                    return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [maxkandydat,maxwybory ])
+                    return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [maxkandydat, maxwybory])
                 })
-    });
+            });
     }
 
-    static addExistToExist(idwyboryCome,idkandydatCome){
-        return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [idwyboryCome,idkandydatCome ])
+    static addExistToExist(idwyboryCome, idkandydatCome) {
+        return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [idwyboryCome, idkandydatCome])
     }
 
     static addWybory(idKandydat, wybory) {
@@ -46,7 +45,7 @@ class Dbservice {
 
     static addKandydat(idWybory, kandydatprz) {
         kandydat.findindex().then(([c, metadata]) => {
-        return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [c[0].b, idWybory]);
+            return db.execute('insert into `portal`.`Kandydujew` (idkandydat,idwybory) values (?, ?)', [c[0].b, idWybory]);
         });
     }
 }

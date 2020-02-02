@@ -36,6 +36,18 @@
     <br>
     <label><%= wyborcaList[0].ING%></label>
     </div>
+    <div class="rekordlist">
+        <h2>Przypisane rekordy</h2>
+        <ol>
+            <% for(var i = 0 ; i < kandydatList.length ; i++){ %>
+                <li><%= kandydatList[i].idkandydat %></li>
+                <ul>
+                    <li><%= kandydatList[i].imie %></li>
+                    <li><%= kandydatList[i].nazwisko %></li>
+                </ul>
+            <% } %>
+        </ol>
+    </div>
 </div>
 <div class="buttonMore">
     <button><a href="/PanelAdministratora?page_last=0&page_next=10">Powrot</a></button>

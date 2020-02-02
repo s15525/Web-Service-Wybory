@@ -40,6 +40,18 @@
         <br>
         <label><%= kandydatList[0].idKandydujeDo %></label>
     </div>
+    <div class="rekordlist">
+        <h2>Przypisane rekordy</h2>
+        <ol>
+            <% for(var i = 0 ; i < wyboryList.length ; i++){ %>
+                <li><%= wyboryList[i].idwybory %></li>
+                <ul>
+                    <li><%= wyboryList[i].data %></li>
+                    <li><%= wyboryList[i].frekwencja %></li>
+                </ul>
+            <% } %>
+        </ol>
+    </div>
 </div>
 <div class="buttonMore">
     <button><a href="/PanelAdministratoraKandydat?page_last=0&page_next=10">Powrot</a></button>

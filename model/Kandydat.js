@@ -38,6 +38,10 @@ class Kandydat {
         );;
     }
 
+    static getConnectedWybory(id){
+        return db.execute('SELECT * FROM wybory right join KandydujeW ON KandydujeW.idwybory= Wybory.idwybory where KandydujeW.idkandydat =' + id);
+    }
+
     static getListFromId(id){
         return db.execute('select * from Kandydat WHERE `idkandydat` ='+ id );
     }

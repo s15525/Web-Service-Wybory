@@ -15,108 +15,41 @@
 </div>
 <div class="boxmore">
     <div class="more">
-        <h2>Wybory</h2>
-        <br>
-        <div class="przypisy">
-            <label style="padding: 10px">Id wybory</label>
-            <br>
-            <label style="padding: 10px">Data</label>
-            <br>
-            <label style="padding: 10px">Frekwencja</label>
-            <br>
-            <label style="padding: 10px">Godzina rozpoczecia</label>
-            <br>
-            <label style="padding: 10px">Godzina zakonczenia</label>
-            <br>
-            <label style="padding: 10px">Ilosc nie waznych glosow</label>
-        </div>
-        <div class="wartosci">
-            <form id="Wybory" action="/editMoreToMore" method="POST">
-                <label style="padding: 10px"><%= wyborcaId %></label>
-                <input id="idwybory" type="hidden" name="idwybory" style="padding: 10px"
-                       value="<%= wyborcaId %>">
+        <form id="Wybory" action="/editMoreToMore" method="POST">
+            <div class="wartosci">
+                <label style="padding: 10px">Id Wybory</label>
                 <br>
-                <input id="data" type="text" name="data" style="padding: 10px"
-                       value="<%= wyborcaKandydat[0].data %>">
+                <input type="hidden" name="kandydatId"  value="<%=kandydatId %>">
+                <input type="hidden" name="wyboryId" value="<%=wyboryId%>">
+                <select name="wyboryIdprzy" >
+                    <% for(var i = 0 ; i < wyboryList.length ; i++){ %>
+                        <% if(wyboryList[i].idwybory == wyboryId){ %>
+                        <option value=<%= wyboryList[i].idwybory %> selected><%= wyboryList[i].data %></option>
+                        <% }else { %>
+                        <option  value=<%= wyboryList[i].idwybory %>><%= wyboryList[i].data %></option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+            <div class="wartosci">
+                <label id="kandydatId" style="padding: 10px">Id Kandydat</label>
                 <br>
-                <span id="errors_data" class="errors-text"></span>
-                <input id="frekwencja" type="text" name="frekwencja" style="padding: 10px"
-                       value="<%= wyborcaKandydat[0].frekwencja %>">
-                <span id="errors_frekwencja" class="errors-text"></span>
-                <br>
-                <input id="godzinaR" type="text" name="godzinaR" style="padding: 10px"
-                       value="<%= wyborcaKandydat[0].godzinaR %>">
-                <span id="errors_godzinaR" class="errors-text"></span>
-                <br>
-                <input id="godzinaZ" type="text" name="godzinaZ" style="padding: 10px"
-                       value="<%= wyborcaKandydat[0].godzinaZ %>">
-                <span id="errors_godzinaZ" class="errors-text"></span>
-                <br>
-                <input id="ING" type="text" name="ING" style="padding: 10px"
-                       value="<%= wyborcaKandydat[0].ING %>">
-                <span id="errors_ING" class="errors-text"></span>
-        </div>
-    </div>
-    <div class="more">
-        <h2>Kandydat</h2>
-        <br>
-        <div class="przypisy">
-            <label style="padding: 20px">Id Kandydat</label>
-            <br>
-            <label style="padding: 20px">Miejsce</label>
-            <br>
-            <label style="padding: 20px">Imie</label>
-            <br>
-            <label style="padding: 20px">Nazwisko</label>
-            <br>
-            <label style="padding: 20px">NrLegitymacjiPoselskiej</label>
-            <br>
-            <label style="padding: 20px">IdLista</label>
-            <br>
-            <label style="padding: 20px">IdUgrupowanie</label>
-            <br>
-            <label style="padding: 20px">IdKandydujeDo</label>
-            <br>
-        </div>
-        <div class="wartosci">
-            <label id="kandydatId" style="padding: 10px"
-                   ><%= kandydatId %></label>
-            <input id="kandydatId" type="hidden" name="kandydatId" style="padding: 10px"
-                   value="<%= kandydatId %>"><span class="required"><sup>*</sup></span>
-            <br>
-            <input id="miejsce" type="text" name="miejsce" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].miejsce %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_miejsce" class="errors-text"></span>
-            <br>
-            <input id="imie" type="text" name="imie" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].imie %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_imie" class="errors-text"></span>
-            <br>
-            <input id="nazwisko" type="text" name="nazwisko" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].nazwisko %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_nazwisko" class="errors-text"></span>
-            <br>
-            <input id="nrLegitymacjiPoselskiej" type="text" name="nrLegitymacjiPoselskiej" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].nrLegitymacjiPoselskiej %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_nrLegitymacjiPoselskiej" class="errors-text"></span>
-            <br>
-            <input id="idLista" type="text" name="idLista" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].idLista %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_idLista" class="errors-text"></span>
-            <br>
-            <input id="idUgrupowanie" type="text" name="idUgrupowanie" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].idUgrupowanie %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_idUgrupowanie" class="errors-text"></span>
-            <br>
-            <input id="idKandydujeDo" type="text" name="idKandydujeDo" style="padding: 10px"
-                   value="<%= wyborcaKandydat[0].idKandydujeDo %>"><span class="required"><sup>*</sup></span>
-            <span id="errors_idKandydujeDo" class="errors-text"></span>
+                <select name="kandydatIdprzy" >
+                    <% for(var i = 0 ; i < kandydatList.length ; i++){ %>
+                        <% if(kandydatList[i].idkandydat == kandydatId){ %>
+                        <option value=<%= kandydatList[i].idkandydat %> selected><%= kandydatList[i].imie +" " + kandydatList[i].nazwisko %></option>
+                        <% }else { %>
+                        <option value=<%= kandydatList[i].idkandydat %>><%= kandydatList[i].imie+" " + kandydatList[i].nazwisko %></option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
             <div class="buttonMore">
                 <input type="submit" value="Zapisz" class="action-btn"></input>
             </div>
-            </form>
-        </div>
+        </form>
     </div>
+</div>
 </div>
 </body>
 </html>

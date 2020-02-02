@@ -66,11 +66,11 @@ router.get("/PanelAdministratoraUser", (req, res, next) => {
 
 });
 router.get("/NowyRekordKandydat", (req, res, next) => {
-    res.render('NowyRekordKandydat', {wyboryId: req.query.wyboryId});
+    res.render('NowyRekordKandydat', {wyboryId: req.query.wyboryId , errors_istnieje: ''});
 });
 
 router.get("/NowyRekordWybory", (req, res, next) => {
-    res.render('NowyRekordWybory', {kandydatId: req.query.kandydatId});
+    res.render('NowyRekordWybory', {kandydatId: req.query.kandydatId, errors_istnieje: ''});
 });
 
 router.get("/Edycja", (req, res, next) => {
@@ -101,36 +101,52 @@ router.get("/EdycjaUser", (req, res, next) => {
 });
 
 router.get("/Usun", (req, res, next) => {
-    Wyborca.delete(req.query.wyborca_id);
+    Wyborca.delete(req.query.wyborca_id).catch(err => {
+        console.log("Ten rekord jest dowiazany w bazie najpierw usun relacje!!!");
+    });;;
     res.redirect("/PanelAdministratora?page_last=0&page_next=10");
 });
 
 router.get("/UsunKandydat", (req, res, next) => {
-    Kandydat.delete(req.query.kandydat_id);
+    Kandydat.delete(req.query.kandydat_id).catch(err => {
+        console.log("Ten rekord jest dowiazany w bazie najpierw usun relacje!!!");
+    });;;
     res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
 });
 
 router.get("/UsunUser", (req, res, next) => {
     User.delete(req.query.user_id);
-    res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
+    res.redirect("/PanelAdministratoraUser?page_last=0&page_next=10");
 });
 
 router.get("/Szczegoly", (req, res, next) => {
-    Wyborca.getListFromId(req.query.wyborca_id).then(
-        ([wyborcaList, metadata]) => {
-            res.render('Szczegoly', {wyborcaId: req.query.wyborca_id, wyborcaList: wyborcaList});
-        }).catch(err => {
-        console.log(err);
-    });
+    Wyborca.getConnectedKandydat(req.query.wyborca_id).then(([kandydatList, metadata]) => {
+        Wyborca.getListFromId(req.query.wyborca_id).then(
+            ([wyborcaList, metadata]) => {
+                res.render('Szczegoly', {
+                    wyborcaId: req.query.wyborca_id,
+                    wyborcaList: wyborcaList,
+                    kandydatList: kandydatList
+                });
+            }).catch(err => {
+            console.log(err);
+        })
+    })
 });
 
 router.get("/SzczegolyKandydat", (req, res, next) => {
-    Kandydat.getListFromId(req.query.kandydat_id).then(
-        ([kandydatList, metadata]) => {
-            res.render('SzczegolyKandydat', {wyborcaId: req.query.kandydat_id, kandydatList: kandydatList});
-        }).catch(err => {
-        console.log(err);
-    });
+    Kandydat.getConnectedWybory(req.query.kandydat_id).then(([wyboryList, metadata]) => {
+        Kandydat.getListFromId(req.query.kandydat_id).then(
+            ([kandydatList, metadata]) => {
+                res.render('SzczegolyKandydat', {
+                    wyborcaId: req.query.kandydat_id,
+                    kandydatList: kandydatList,
+                    wyboryList: wyboryList
+                });
+            }).catch(err => {
+            console.log(err);
+        })
+    })
 });
 
 router.get("/SzczegolyUser", (req, res, next) => {
@@ -174,16 +190,22 @@ router.get("/SzczegolyWieleDoWiele", (req, res, next) => {
 
 });
 router.get("/EdycjaWieleDoWiele", (req, res, next) => {
-    Dbservice.getListFromId(req.query.kandydat_id, req.query.wyborca_id).then(
-        ([wyborcaKandydat, metadata]) => {
-            res.render('EdycjaWieleDoWiele', {
-                kandydatId: req.query.kandydat_id,
-                wyborcaId: req.query.wyborca_id,
-                wyborcaKandydat: wyborcaKandydat
+    Kandydat.list().then(([kandydatList, metadata]) => {
+        Wyborca.list().then(([wyborcaList, metadata]) => {
+            Dbservice.getListFromId(req.query.kandydat_id, req.query.wyborca_id).then(
+                ([wyborcaKandydat, metadata]) => {
+                    res.render('EdycjaWieleDoWiele', {
+                        kandydatId: req.query.kandydat_id,
+                        wyboryId: req.query.wyborca_id,
+                        wyborcaKandydat: wyborcaKandydat,
+                        wyboryList: wyborcaList,
+                        kandydatList: kandydatList
+                    })
+                }).catch(err => {
+                console.log(err);
             })
-        }).catch(err => {
-        console.log(err);
-    });
+        })
+    })
 });
 router.get("/NowyRekordWieledoWiele", (req, res, next) => {
     Wyborca.list()
@@ -216,14 +238,26 @@ router.get("/Dodajistniejace", (req, res, next) => {
 
 router.post("/addWybory", (req, res, next) => {
     const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data);
-    if (req.body.kandydatId == "") {
-        Wyborca.add(newWyborca);
-        //res.redirect("/PanelAdministratora?page_last=0&page_next=10");
-    } else {
-        Wyborca.add(newWyborca).then(
-            Dbservice.addWybory(req.body.kandydatId, newWyborca));
-        //res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
-    }
+    DbValidate.checkWyborcaExist(newWyborca).then(check => {
+        if (req.body.kandydatId == "") {
+            if (check == true) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.render('NowyRekordWybory', {kandydatId: req.query.kandydatId, errors_istnieje: 'Ten rekord juz istnieje !!!'});
+            } else {
+                Wyborca.add(newWyborca);
+                res.redirect("/PanelAdministratora?page_last=0&page_next=10");
+            }
+        } else {
+            if (check == true) {
+                console.log("Istnieje juz taki rekord !!!");
+                res.render('NowyRekordWybory', {kandydatId: req.query.kandydatId, errors_istnieje: 'Ten rekord juz istnieje !!!'});
+            } else {
+                Wyborca.add(newWyborca).then(
+                    Dbservice.addWybory(req.body.kandydatId, newWyborca));
+                res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
+            }
+        }
+    })
 });
 
 router.post("/addKandydat", (req, res, next) => {
@@ -233,7 +267,7 @@ router.post("/addKandydat", (req, res, next) => {
             if (check == true
             ) {
                 console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
+                res.render('NowyRekordKandydat', {wyboryId: req.query.wyboryId , errors_istnieje: 'Ten rekord juz istnieje !!!'});
             } else {
                 Kandydat.add(newKandydat);
                 res.redirect("/PanelAdministratoraKandydat?page_last=0&page_next=10");
@@ -241,7 +275,7 @@ router.post("/addKandydat", (req, res, next) => {
         } else {
             if (check == true) {
                 console.log("Istnieje juz taki rekord !!!");
-                res.redirect("/takirekordistniejeKandydat");
+                res.render('NowyRekordKandydat', {wyboryId: req.query.wyboryId , errors_istnieje: 'Ten rekord juz istnieje !!!'});
             } else {
                 Kandydat.add(newKandydat).then(
                     Dbservice.addKandydat(req.body.wyboryId, newKandydat));
@@ -276,7 +310,9 @@ router.post("/addMoreToMore", (req, res, next) => {
 });
 
 router.post("/addExistToExist", (req, res, next) => {
-    Dbservice.addExistToExist(req.body.kandydat, req.body.wybory)
+    Dbservice.addExistToExist(req.body.kandydat, req.body.wybory).catch(err => {
+        console.log("To dowiazanie juz istnieje w bazie !!");
+    });
     res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
 });
 
@@ -299,9 +335,9 @@ router.post("/editUser", (req, res, next) => {
 });
 
 router.post("/editMoreToMore", (req, res, next) => {
-    const newWyborca = new Wyborca(req.body.ING, req.body.godzinaZ, req.body.godzinaR, req.body.frekwencja, req.body.data, req.body.idwybory);
-    const newKandydat = new Kandydat(req.body.miejsce, req.body.imie, req.body.nazwisko, req.body.nrLegitymacjiPoselskiej, req.body.idLista, req.body.idUgrupowanie, req.body.idKandydujeDo, req.body.kandydatId);
-    Dbservice.edit(newWyborca, newKandydat);
+    Dbservice.edit(req.body.wyboryId,req.body.kandydatId,req.body.wyboryIdprzy,req.body.kandydatIdprzy).catch(err => {
+        console.log("To dowiazanie juz istnieje w bazie !!");
+    });;
     res.redirect("/PanelAdministratoraWieleDoWiele?page_last=0&page_next=10");
 });
 
@@ -316,21 +352,6 @@ router.post("/addUser", (req, res, next) => {
             res.redirect("/");
         }
     })
-});
-
-router.post("/checkWybory", (req, res, next) => {
-    let result = {"status": "success", "error": ""}
-    console.log(req.body)
-    const newWyborca = new Wyborca(req.ING, req.godzinaZ, req.godzinaR, req.frekwencja, req.data);
-    // make new user object or something you want to check
-    DbValidate.checkWyborcaExist(newWyborca).then(check => {
-        if (check == true) {
-            result.status = "error";
-            result.error = "user_exists";
-        } // you can add here more tests for better error handling
-    });
-
-    res.json(JSON.stringify(result));
 });
 
 module.exports.route = router;

@@ -1,27 +1,3 @@
-function ajaxCall(data) { //data as js object
-    return new Promise(function (resolve, reject) {
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/checkWybory");
-        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(JSON.parse(xhr.responseText));
-            } else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send(JSON.stringify(data));
-    });
-}
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('Wybory');
@@ -77,22 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
             errorsgodzinaR.innerHTML = "";
             fieldgodzinaR.className = "";
         }
-        let userExists = false;
-        await ajaxCall({
-            date: fielddata,
-            godzinaR: fieldgodzinaR,
-            godzinaZ: fieldgodzinaZ,
-            ING: fieldING,
-            frekwencja: fieldFrekwencja
-        }).then(data => {
-            if (data.status == "fail" && data.error == "user_exists") userExists = true;
-        });
-
-        if (userExists== true){
-            errorsistnieje.innerHTML = errorMessages['istnieje'];
-        }else{
-            errorsistnieje.innerHTML = "";
-        }
 
         if (messages.length > 0) {
             valid = false;
@@ -101,15 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
             fieldgodzinaR.className = "errors-input";
             e.preventDefault();
         }
-        /*
-         * example of ajaxCall use:
-        let userExists = false;
-        await ajaxCall({ imie: "ABC", nazwisko: "DEF" }).then(data => {
-            if(data.status == "fail" && data.error == "user_exists") userExists = true;
-        });
-        
-        if(userExists /* || other tests //) valid = false;
-         */
 
         return valid;
     }

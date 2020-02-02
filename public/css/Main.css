@@ -216,6 +216,7 @@ h1 {
     text-align: center;
 }
 
+label.required { color: red; }
 
 .boxmore{
     display: flex;

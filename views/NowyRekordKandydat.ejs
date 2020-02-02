@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>Nowy rekord</h1>
+<label class='required'><%= errors_istnieje%></label>
 <div class="more">
     <h2>Kandydat</h2>
     <br>
@@ -29,7 +30,7 @@
     <div class="wartosci">
         <form id="dbService" action="/addKandydat" method="POST">
             <p>
-            <input type="hidden" name="wyboryId" style="padding: 10px" value="<%=wyboryId%>">
+            <input type="hidden" name="wyboryId"value="<%=wyboryId%>">
             <input type="text" id="miejsce" name="miejsce" style="padding: 10px"><span class="required"><sup>*</sup></span>
             <span id="errors_miejsce" class="errors-text"></span>
             <br>
@@ -42,14 +43,11 @@
             <input type="text" id="nrLegitymacjiPoselskiej" name="nrLegitymacjiPoselskiej" style="padding: 10px"><span class="required"><sup>*</sup></span>
             <span id="errors_nrLegitymacjiPoselskiej" class="errors-text"></span>
             <br>
-            <input type="text" id="idLista" name="idLista" style="padding: 10px"><span class="required"><sup>*</sup></span>
-            <span id="errors_idLista" class="errors-text"></span>
+            <input type="text" id="idLista" name="idLista" style="padding: 10px">
             <br>
-            <input type="text" id="idUgrupowanie" name="idUgrupowanie" style="padding: 10px"><span class="required"><sup>*</sup></span>
-            <span id="errors_idUgrupowanie" class="errors-text"></span>
+            <input type="text" id="idUgrupowanie" name="idUgrupowanie" style="padding: 10px">
             <br>
-            <input type="text" id="idKandydujeDo" name="idKandydujeDo" style="padding: 10px"><span class="required"><sup>*</sup></span>
-            <span id="errors_idKandydujeDo" class="errors-text"></span>
+            <input type="text" id="idKandydujeDo" name="idKandydujeDo" style="padding: 10px">
             </p>
             <div class="buttonMore">
                 <input type="submit" value="Zapisz" class="action-btn"></input>

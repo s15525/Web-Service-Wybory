@@ -34,6 +34,10 @@ class Wyborca {
         return db.execute('select * from Wybory WHERE `idwybory` ='+ id );
     }
 
+    static getConnectedKandydat(id){
+        return db.execute('SELECT * FROM Kandydat right join KandydujeW ON KandydujeW.idkandydat = Kandydat.idkandydat where KandydujeW.idwybory = ' + id);
+    }
+
     static edit(wyborca) {
         return  db.execute('UPDATE `portal`.`Wybory` SET `data` = ? , `frekwencja` = ?, `godzinaR` = ?, `godzinaZ` =  ? ,`ING` =  ? WHERE `idwybory` = '+ wyborca.idwybory,
             [wyborca.data, wyborca.frekwencja, wyborca.godzinaR, wyborca.godzinaZ, wyborca.ING]

@@ -1,6 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS `portal`;
+create SCHEMA IF NOT EXISTS `portal`;
 
-CREATE TABLE IF NOT EXISTS `portal`.`Wybory`
+create TABLE IF NOT EXISTS `portal`.`Wybory`
 (
  `idwybory`              int NOT NULL ,
  `data`                  YEAR NOT NULL ,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `portal`.`Wybory`
 );
 -- ************************************** [Wyborca]
 
-CREATE TABLE IF NOT EXISTS `portal`.`User`
+create TABLE IF NOT EXISTS `portal`.`User`
 (
  `idUser`     int NOT NULL ,
  `imie`          varchar(50) NOT NULL ,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `portal`.`User`
  CONSTRAINT `PK_Wyborca` PRIMARY KEY (`idUser` ASC)
 );
 
-CREATE TABLE IF NOT EXISTS `portal`.`Kandydat`
+create TABLE IF NOT EXISTS `portal`.`Kandydat`
 (
  `idkandydat`              int NOT NULL ,
  `miejsce`                 varchar(50) NOT NULL ,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `portal`.`Kandydat`
 
 -- ************************************** [KandydujeW]
 
-CREATE TABLE IF NOT EXISTS `portal`.`KandydujeW`
+create TABLE IF NOT EXISTS `portal`.`KandydujeW`
 (
  `idwybory`   int NOT NULL ,
  `idkandydat` int NOT NULL ,
@@ -59,20 +59,19 @@ CREATE TABLE IF NOT EXISTS `portal`.`KandydujeW`
 
 insert IGNORE INTO `portal`.`Wybory` ( `idwybory`, `data`,`frekwencja`,`godzinaR`,`godzinaZ`,`ING`) VALUES
   (1, STR_TO_DATE('1-01-2012', '%d-%m-%Y') ,21, '20:00:00','08:00:00',71),
-  (2, STR_TO_DATE('1-01-2012', '%d-%m-%Y') ,21, '20:00:00','08:00:00',71),
-  (3, STR_TO_DATE('1-01-2012', '%d-%m-%Y') ,21, '20:00:00','08:00:00',71)
+  (2, STR_TO_DATE('1-01-2013', '%d-%m-%Y') ,21, '20:00:00','08:00:00',71),
+  (3, STR_TO_DATE('1-01-2014', '%d-%m-%Y') ,21, '20:00:00','08:00:00',71)
 ;
 
 insert IGNORE INTO `portal`.`kandydat` (  `idkandydat`,`miejsce`,`imie`,`nazwisko`,`nrLegitymacjiPoselskiej`,`idLista`,`idUgrupowanie`,`idKandydujeDo`)VALUES           
 (1,10, 'Mikolaj','Kowal',132313123,1,1,1),
-(2,16, 'Maciek','Kowal',132313123,3,3,3),
-(3,20, 'Maciek','Kowal',132313123,8,8,8)
+(2,16, 'Marek','Penkala',132313123,3,3,3),
+(3,20, 'Maciek','Horoszko',132313123,8,8,8)
 ;
 
 insert IGNORE INTO `portal`.`KandydujeW`(`idwybory`,`idkandydat`)VALUES
+(1,1),
 (1,2),
-(2,2),
-(3,1),
-(1,1)
+(1,3)
 ;
 
