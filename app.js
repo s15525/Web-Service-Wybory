@@ -15,7 +15,7 @@ app.set('views', 'views');
 
 app.use(express.static('public'));
 
-const wyborcaController = require('./controller/wyborcaController');
+const wyborcaController = require('./controller/voterController');
 app.use('/', wyborcaController.route);
 
 const db = require('./db/mysql');

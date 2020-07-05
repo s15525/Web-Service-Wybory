@@ -12,7 +12,7 @@ create TABLE IF NOT EXISTS `portal`.`Wybory`
 
  CONSTRAINT `PK_Wybory` PRIMARY KEY (`idwybory` ASC)
 );
--- ************************************** [Wyborca]
+-- ************************************** [Voter]
 
 create TABLE IF NOT EXISTS `portal`.`User`
 (
@@ -28,7 +28,7 @@ create TABLE IF NOT EXISTS `portal`.`User`
  CONSTRAINT `PK_Wyborca` PRIMARY KEY (`idUser` ASC)
 );
 
-create TABLE IF NOT EXISTS `portal`.`Kandydat`
+create TABLE IF NOT EXISTS `portal`.`Candidate`
 (
  `idkandydat`              int NOT NULL ,
  `miejsce`                 varchar(50) NOT NULL ,
@@ -54,7 +54,7 @@ create TABLE IF NOT EXISTS `portal`.`KandydujeW`
 
  CONSTRAINT `PK_KandydujeW` PRIMARY KEY (`idwybory` ASC, `idkandydat` ASC),
  CONSTRAINT `FK_26` FOREIGN KEY (`idwybory`)  REFERENCES Wybory(`idwybory`),
- CONSTRAINT `FK_29` FOREIGN KEY (`idkandydat`)  REFERENCES Kandydat(`idkandydat`)
+ CONSTRAINT `FK_29` FOREIGN KEY (`idkandydat`)  REFERENCES Candidate(`idkandydat`)
 );
 
 insert IGNORE INTO `portal`.`Wybory` ( `idwybory`, `data`,`frekwencja`,`godzinaR`,`godzinaZ`,`ING`) VALUES

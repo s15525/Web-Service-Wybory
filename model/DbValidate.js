@@ -1,5 +1,5 @@
-const Kandydat = require('../model/Kandydat');
-const Wyborca = require('../model/Wyborca');
+const Kandydat = require('./Candidate');
+const Wyborca = require('./Voter');
 const User = require('../model/User');
 
 class DbValidate {

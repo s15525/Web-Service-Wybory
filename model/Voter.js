@@ -1,6 +1,6 @@
 const db = require('../db/mysql');
 
-class Wyborca {
+class Voter {
     //parametr id jest na końcu, bo jest opcjonalny
     constructor(ING, godzinaZ, godzinaR, frekwencja, data, idwybory) {
         this.idwybory = idwybory;
@@ -50,4 +50,4 @@ class Wyborca {
 
 }
 
-module.exports = Wyborca;
+module.exports = Voter;

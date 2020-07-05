@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const Wyborca = require('../model/Wyborca');
+const Wyborca = require('../model/Voter');
 const User = require('../model/User');
-const Kandydat = require('../model/Kandydat');
+const Kandydat = require('../model/Candidate');
 const Dbservice = require('../model/Dbservice');
 const DbValidate = require('../model/DbValidate');
 
@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/Zarejestruj", (req, res, next) => {
-    res.render('Zarejestruj', {});
+    res.render('Zarejestruj', {errors_istnieje : ' '});
 });
 router.get("/Glosuj", (req, res, next) => {
     res.render('Glosuj', {});
@@ -346,7 +346,7 @@ router.post("/addUser", (req, res, next) => {
     DbValidate.checkUserExist(newUser).then(check => {
         if (check == true) {
             console.log("Istnieje juz taki rekord !!!");
-            res.redirect("/");
+            res.render('Zarejestruj', {errors_istnieje:'Ten rekord juz istnieje !!!'});
         } else {
             User.addUser(newUser);
             res.redirect("/");

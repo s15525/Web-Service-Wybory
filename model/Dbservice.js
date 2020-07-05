@@ -1,5 +1,5 @@
-const wyborca = require('../model/Wyborca');
-const kandydat = require('../model/Kandydat');
+const wyborca = require('./Voter');
+const kandydat = require('./Candidate');
 
 const db = require('../db/mysql');
 
